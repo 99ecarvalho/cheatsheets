@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tmux Keys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="top"><a class="home" href="cheatsheet.html">← All cheat sheets</a><a href="tmux.html" aria-current="page">tmux</a><a href="vim.html">Vim</a><a href="astronvim.html">AstroNvim</a></nav>
+<header>
+  <div>
+    <h1><span class="dollar">$</span> tmux<span class="cur">▍</span></h1>
+    <p class="sub">Your setup: tmux 3.5a with oh-my-tmux (gpakosz), mouse on, windows and panes numbered from 1.</p>
+  </div>
+  <div class="prefix-card">
+    <div class="row"><kbd class="p">prefix</kbd> = <kbd>Ctrl</kbd>+<kbd>b</kbd> or <kbd>Ctrl</kbd>+<kbd>a</kbd></div>
+    <div class="row" style="color:var(--muted)">Press the prefix, let go, then press the key.</div>
+  </div>
+</header>
+
+<div class="tools">
+  <label class="search" for="q"><input id="q" type="search" placeholder="filter: split, zoom, rename…" autocomplete="off"></label>
+  <div class="legend">
+    <span><kbd class="p">prefix</kbd> then key</span>
+    <span><span class="omt">oh-my-tmux</span> added by your config</span>
+    <span><span class="warn">needs install</span> helper missing</span>
+  </div>
+</div>
+
+<div class="grid" id="grid">
+
+<section class="s-cli"><h2>From the shell <span class="where">outside tmux</span></h2><table>
+<tr><td class="k"><code>tmux</code></td><td class="d">Start a new session</td></tr>
+<tr><td class="k"><code>tmux new -s work</code></td><td class="d">Start a session named <em>work</em></td></tr>
+<tr><td class="k"><code>tmux ls</code></td><td class="d">List sessions</td></tr>
+<tr><td class="k"><code>tmux a</code></td><td class="d">Attach to the last session</td></tr>
+<tr><td class="k"><code>tmux a -t work</code></td><td class="d">Attach to session <em>work</em></td></tr>
+<tr><td class="k"><code>tmux kill-session -t work</code></td><td class="d">Kill session <em>work</em></td></tr>
+<tr><td class="k"><code>tmux kill-server</code></td><td class="d">Kill every session</td></tr>
+</table></section>
+
+<section class="s-sess"><h2>Sessions</h2><table>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>d</kbd></td><td class="d">Detach (the session keeps running)</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>s</kbd></td><td class="d">Pick a session from a list</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>$</kbd></td><td class="d">Rename the session</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>c</kbd></td><td class="d">New session <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>f</kbd></td><td class="d">Find a session by name and switch to it <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Shift</kbd><kbd>Tab</kbd></td><td class="d">Go to the last session <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>(</kbd> <kbd>)</kbd></td><td class="d">Previous / next session</td></tr>
+</table></section>
+
+<section class="s-win"><h2>Windows <span class="where">tabs in the status bar</span></h2><table>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>c</kbd></td><td class="d">New window</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>,</kbd></td><td class="d">Rename the window</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>1</kbd>…<kbd>9</kbd></td><td class="d">Go to window 1–9 (numbering starts at 1)</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>h</kbd> / <kbd>l</kbd></td><td class="d">Previous / next window, repeatable <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Tab</kbd></td><td class="d">Go to the last window <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>w</kbd></td><td class="d">Pick a window from a tree of all sessions</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>f</kbd></td><td class="d">Find a window by its text</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>.</kbd></td><td class="d">Move the window to another number</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>&amp;</kbd></td><td class="d">Close the window (asks first)</td></tr>
+</table>
+<div class="note"><kbd>n</kbd> and <kbd>p</kbd> no longer switch windows. oh-my-tmux unbinds them, and <kbd class="p">prefix</kbd><kbd>p</kbd> now pastes.</div></section>
+
+<section class="s-pane"><h2>Panes <span class="where">splits</span></h2><table>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>-</kbd></td><td class="d">Split into top and bottom <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>_</kbd></td><td class="d">Split into left and right <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>"</kbd> <kbd>%</kbd></td><td class="d">The standard splits (top/bottom, left/right) still work</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td class="d">Move to the pane left / down / up / right, repeatable <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>↑</kbd><kbd>→</kbd></td><td class="d">Move between panes with the arrow keys</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>H</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd></td><td class="d">Resize by 2 cells, repeatable <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>z</kbd></td><td class="d">Zoom the pane to full window and back</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>+</kbd></td><td class="d">Maximize the pane into its own window and back <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>&gt;</kbd> <kbd>&lt;</kbd></td><td class="d">Swap with the next / previous pane <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>q</kbd></td><td class="d">Show pane numbers (press one to jump to it)</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>o</kbd></td><td class="d">Go to the next pane</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Space</kbd></td><td class="d">Cycle through the preset layouts</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>!</kbd></td><td class="d">Move the pane into a window of its own</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>x</kbd></td><td class="d">Close the pane (asks first)</td></tr>
+<tr><td class="k">mouse</td><td class="d">Click a pane to focus it, drag a border to resize it</td></tr>
+</table>
+<div class="note">New panes open in the current pane's folder. New windows open in your home folder.</div></section>
+
+<section class="s-copy"><h2>Copy mode <span class="where">scroll &amp; select</span></h2><table>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Enter</kbd></td><td class="d">Enter copy mode <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>[</kbd></td><td class="d">Enter copy mode (standard)</td></tr>
+<tr><td class="k">mouse wheel</td><td class="d">Scroll up; enters copy mode by itself</td></tr>
+<tr><td class="k"><kbd>↑</kbd><kbd>↓</kbd> <kbd>PgUp</kbd><kbd>PgDn</kbd></td><td class="d">Move and scroll</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>Space</kbd></td><td class="d">Start selecting</td></tr>
+<tr><td class="k"><kbd>Alt</kbd><kbd>w</kbd></td><td class="d">Copy the selection to the tmux buffer</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>s</kbd> / <kbd>Ctrl</kbd><kbd>r</kbd></td><td class="d">Search down / up</td></tr>
+<tr><td class="k"><kbd>q</kbd> or <kbd>Esc</kbd></td><td class="d">Leave copy mode</td></tr>
+<tr><td class="k">mouse drag</td><td class="d">Select and copy. Hold <kbd>Shift</kbd> while dragging to use the terminal's own selection instead</td></tr>
+</table>
+<div class="note">These are emacs-style keys, because your config doesn't turn on vi mode. To use <kbd>v</kbd> to select, <kbd>Ctrl</kbd><kbd>v</kbd> for a block and <kbd>y</kbd> to copy, uncomment <code>set -g mode-keys vi</code> at line 348 of <code>~/.tmux.conf.local</code>. Copying stays inside tmux; set <code>tmux_conf_copy_to_os_clipboard=true</code> to also copy to the desktop clipboard.</div></section>
+
+<section class="s-buf"><h2>Paste buffers</h2><table>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>p</kbd></td><td class="d">Paste the latest copy <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>]</kbd></td><td class="d">Paste the latest copy (standard)</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>P</kbd></td><td class="d">Choose which copy to paste <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>b</kbd></td><td class="d">List copies <span class="omt">oh-my-tmux</span></td></tr>
+</table></section>
+
+<section class="s-misc"><h2>Config &amp; misc</h2><table>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>e</kbd></td><td class="d">Edit <code>~/.tmux.conf.local</code>, then reload it <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>r</kbd></td><td class="d">Reload the config <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>m</kbd></td><td class="d">Turn the mouse on or off <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>l</kbd></td><td class="d">Clear the screen <em>and</em> the scrollback (no prefix) <span class="omt">oh-my-tmux</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>?</kbd></td><td class="d">List every key binding</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>:</kbd></td><td class="d">Type a tmux command, for example <code>setw synchronize-panes</code></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>t</kbd></td><td class="d">Show a big clock</td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>U</kbd></td><td class="d">Open a URL shown in the pane <span class="warn">needs urlview</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>F</kbd></td><td class="d">Pick a file path shown in the pane <span class="warn">needs fpp</span></td></tr>
+<tr><td class="k"><kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>a</kbd></td><td class="d">Send a real <kbd>Ctrl</kbd><kbd>a</kbd> to the program (start of line in the shell)</td></tr>
+</table></section>
+
+</div>
+<p class="none" id="none">No key matches that filter.</p>
+
+<footer>Status bar, left to right: ❐ session name and uptime. Right side: indicators for the prefix, mouse, pairing and synchronized panes, then time, date, user and host. To change colours or the status bar, edit <code>~/.tmux.conf.local</code> and leave <code>~/.tmux.conf</code> alone.</footer>
+</div>
+<script src="filter.js"></script>
+</body>
+</html>

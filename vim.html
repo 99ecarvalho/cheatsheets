@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vim Keys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="top"><a class="home" href="cheatsheet.html">← All cheat sheets</a><a href="tmux.html">tmux</a><a href="vim.html" aria-current="page">Vim</a><a href="astronvim.html">AstroNvim</a></nav>
+<header>
+  <div>
+    <h1><span class="dollar">:</span> vim<span class="cur">▍</span></h1>
+    <p class="sub">Vim 9.1 with no <code>~/.vimrc</code>, so it uses Vim's built-in defaults. Everything here also works in Neovim and AstroNvim.</p>
+  </div>
+  <div class="prefix-card">
+    <div class="row"><kbd>Esc</kbd> back to Normal mode, always safe</div>
+    <div class="row"><code>:q!</code> quit without saving</div>
+  </div>
+</header>
+
+<div class="tools">
+  <label class="search" for="q"><input id="q" type="search" placeholder="filter: delete, replace, window…" autocomplete="off"></label>
+  <div class="legend">
+    <span><kbd>Ctrl</kbd><kbd>d</kbd> hold Ctrl, press d</span>
+    <span><code>:w</code> type it, then Enter</span>
+    <span><span class="warn">not in your vim</span> feature missing</span>
+  </div>
+</div>
+
+<div class="grid" id="grid">
+
+<section class="c-purple"><h2>Modes</h2><table>
+<tr><td class="k"><kbd>i</kbd> <kbd>a</kbd></td><td class="d">Insert before / after the cursor</td></tr>
+<tr><td class="k"><kbd>I</kbd> <kbd>A</kbd></td><td class="d">Insert at start / end of the line</td></tr>
+<tr><td class="k"><kbd>o</kbd> <kbd>O</kbd></td><td class="d">Open a new line below / above</td></tr>
+<tr><td class="k"><kbd>v</kbd></td><td class="d">Visual: select characters</td></tr>
+<tr><td class="k"><kbd>V</kbd></td><td class="d">Visual line: select whole lines</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>v</kbd></td><td class="d">Visual block: select a rectangle</td></tr>
+<tr><td class="k"><kbd>R</kbd></td><td class="d">Replace mode: overtype</td></tr>
+<tr><td class="k"><kbd>:</kbd></td><td class="d">Command line</td></tr>
+<tr><td class="k"><kbd>Esc</kbd> or <kbd>Ctrl</kbd><kbd>[</kbd></td><td class="d">Back to Normal mode</td></tr>
+</table></section>
+
+<section class="c-cyan"><h2>Move</h2><table>
+<tr><td class="k"><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td class="d">Left / down / up / right</td></tr>
+<tr><td class="k"><kbd>w</kbd> <kbd>b</kbd> <kbd>e</kbd></td><td class="d">Next word start / previous word start / word end</td></tr>
+<tr><td class="k"><kbd>W</kbd> <kbd>B</kbd> <kbd>E</kbd></td><td class="d">Same, but words are separated only by spaces</td></tr>
+<tr><td class="k"><kbd>0</kbd> <kbd>^</kbd> <kbd>$</kbd></td><td class="d">Line start / first non-blank / line end</td></tr>
+<tr><td class="k"><kbd>gg</kbd> <kbd>G</kbd></td><td class="d">First / last line</td></tr>
+<tr><td class="k"><kbd>42G</kbd> or <code>:42</code></td><td class="d">Go to line 42</td></tr>
+<tr><td class="k"><kbd>f</kbd><kbd>x</kbd> <kbd>t</kbd><kbd>x</kbd></td><td class="d">Jump onto / just before the next <em>x</em> on the line</td></tr>
+<tr><td class="k"><kbd>F</kbd><kbd>x</kbd> <kbd>T</kbd><kbd>x</kbd></td><td class="d">Same, backwards</td></tr>
+<tr><td class="k"><kbd>;</kbd> <kbd>,</kbd></td><td class="d">Repeat the last f/t forwards / backwards</td></tr>
+<tr><td class="k"><kbd>%</kbd></td><td class="d">Jump to the matching bracket</td></tr>
+<tr><td class="k"><kbd>{</kbd> <kbd>}</kbd></td><td class="d">Previous / next blank line (paragraph)</td></tr>
+<tr><td class="k"><kbd>H</kbd> <kbd>M</kbd> <kbd>L</kbd></td><td class="d">Top / middle / bottom of the screen</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>d</kbd> / <kbd>u</kbd></td><td class="d">Half a page down / up</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>f</kbd> / <kbd>b</kbd></td><td class="d">A full page down / up</td></tr>
+<tr><td class="k"><kbd>zz</kbd> <kbd>zt</kbd> <kbd>zb</kbd></td><td class="d">Scroll so the cursor line is centred / at top / at bottom</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>o</kbd> / <kbd>i</kbd></td><td class="d">Jump back / forward through where you've been</td></tr>
+<tr><td class="k"><kbd>gd</kbd></td><td class="d">Go to where the word under the cursor is defined (local)</td></tr>
+</table></section>
+
+<section class="c-pink"><h2>Edit</h2><table>
+<tr><td class="k"><kbd>x</kbd></td><td class="d">Delete the character</td></tr>
+<tr><td class="k"><kbd>r</kbd><kbd>x</kbd></td><td class="d">Replace the character with <em>x</em></td></tr>
+<tr><td class="k"><kbd>dd</kbd></td><td class="d">Delete (cut) the line</td></tr>
+<tr><td class="k"><kbd>D</kbd> <kbd>C</kbd></td><td class="d">Delete / change to the end of the line</td></tr>
+<tr><td class="k"><kbd>cc</kbd> <kbd>S</kbd></td><td class="d">Change the whole line</td></tr>
+<tr><td class="k"><kbd>yy</kbd></td><td class="d">Copy (yank) the line</td></tr>
+<tr><td class="k"><kbd>p</kbd> <kbd>P</kbd></td><td class="d">Paste after / before the cursor</td></tr>
+<tr><td class="k"><kbd>u</kbd></td><td class="d">Undo</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>r</kbd></td><td class="d">Redo</td></tr>
+<tr><td class="k"><kbd>.</kbd></td><td class="d">Repeat the last change</td></tr>
+<tr><td class="k"><kbd>J</kbd></td><td class="d">Join the next line onto this one</td></tr>
+<tr><td class="k"><kbd>&gt;&gt;</kbd> <kbd>&lt;&lt;</kbd></td><td class="d">Indent / unindent the line</td></tr>
+<tr><td class="k"><kbd>~</kbd></td><td class="d">Swap upper/lower case of the character</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>a</kbd> / <kbd>x</kbd></td><td class="d">Add / subtract 1 from the number under the cursor</td></tr>
+<tr><td class="k"><kbd>xp</kbd> <kbd>ddp</kbd></td><td class="d">Swap two characters / two lines</td></tr>
+</table></section>
+
+<section class="c-orange"><h2>Operator + motion <span class="where">the grammar</span></h2><table>
+<tr><td class="k"><kbd>d</kbd> <kbd>c</kbd> <kbd>y</kbd></td><td class="d">Delete / change / yank, followed by any motion or text object</td></tr>
+<tr><td class="k"><kbd>&gt;</kbd> <kbd>&lt;</kbd> <kbd>=</kbd></td><td class="d">Indent / unindent / auto-indent</td></tr>
+<tr><td class="k"><kbd>gU</kbd> <kbd>gu</kbd></td><td class="d">Make upper / lower case</td></tr>
+<tr><td class="k"><kbd>dw</kbd> <kbd>d3w</kbd></td><td class="d">Delete a word / three words</td></tr>
+<tr><td class="k"><kbd>dt</kbd><kbd>)</kbd></td><td class="d">Delete up to the next <code>)</code></td></tr>
+<tr><td class="k"><kbd>ciw</kbd></td><td class="d">Change the word under the cursor</td></tr>
+<tr><td class="k"><kbd>ci"</kbd> <kbd>ca"</kbd></td><td class="d">Change inside quotes / including the quotes</td></tr>
+<tr><td class="k"><kbd>di(</kbd> <kbd>da{</kbd></td><td class="d">Delete inside ( ) / around { } including braces</td></tr>
+<tr><td class="k"><kbd>cit</kbd></td><td class="d">Change inside an HTML/XML tag</td></tr>
+<tr><td class="k"><kbd>yap</kbd> <kbd>dap</kbd></td><td class="d">Yank / delete the paragraph</td></tr>
+<tr><td class="k"><kbd>&gt;ip</kbd></td><td class="d">Indent the paragraph</td></tr>
+<tr><td class="k"><kbd>gUiw</kbd></td><td class="d">Upper-case the word</td></tr>
+<tr><td class="k"><kbd>gg=G</kbd></td><td class="d">Re-indent the whole file</td></tr>
+</table>
+<div class="note">Text objects: <kbd>i</kbd> means inside, <kbd>a</kbd> means around. Then <kbd>w</kbd> word, <kbd>s</kbd> sentence, <kbd>p</kbd> paragraph, <kbd>"</kbd> <kbd>'</kbd> <kbd>`</kbd> quotes, <kbd>(</kbd> <kbd>[</kbd> <kbd>{</kbd> <kbd>&lt;</kbd> brackets, <kbd>t</kbd> tag.</div></section>
+
+<section class="c-yellow"><h2>Visual mode <span class="where">after v, V or Ctrl-v</span></h2><table>
+<tr><td class="k"><kbd>o</kbd></td><td class="d">Jump to the other end of the selection</td></tr>
+<tr><td class="k"><kbd>d</kbd> <kbd>y</kbd> <kbd>c</kbd></td><td class="d">Delete / yank / change the selection</td></tr>
+<tr><td class="k"><kbd>&gt;</kbd> <kbd>&lt;</kbd></td><td class="d">Indent / unindent the selection</td></tr>
+<tr><td class="k"><kbd>U</kbd> <kbd>u</kbd> <kbd>~</kbd></td><td class="d">Upper / lower / swap case</td></tr>
+<tr><td class="k"><kbd>J</kbd></td><td class="d">Join the selected lines</td></tr>
+<tr><td class="k"><kbd>gv</kbd></td><td class="d">Select the last selection again (from Normal mode)</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>v</kbd> … <kbd>I</kbd> text <kbd>Esc</kbd></td><td class="d">Insert the same text at the start of every selected line</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>v</kbd> … <kbd>$</kbd><kbd>A</kbd> text <kbd>Esc</kbd></td><td class="d">Append the same text to every selected line</td></tr>
+</table></section>
+
+<section class="c-green"><h2>Search &amp; replace</h2><table>
+<tr><td class="k"><kbd>/</kbd>text <kbd>?</kbd>text</td><td class="d">Search forwards / backwards</td></tr>
+<tr><td class="k"><kbd>n</kbd> <kbd>N</kbd></td><td class="d">Next / previous match</td></tr>
+<tr><td class="k"><kbd>*</kbd> <kbd>#</kbd></td><td class="d">Search for the word under the cursor, forwards / backwards</td></tr>
+<tr><td class="k"><code>:noh</code></td><td class="d">Clear search highlighting</td></tr>
+<tr><td class="k"><code>:s/old/new/</code></td><td class="d">Replace the first match on this line</td></tr>
+<tr><td class="k"><code>:%s/old/new/g</code></td><td class="d">Replace everywhere in the file</td></tr>
+<tr><td class="k"><code>:%s/old/new/gc</code></td><td class="d">Replace everywhere, asking each time (<kbd>y</kbd>/<kbd>n</kbd>/<kbd>a</kbd>/<kbd>q</kbd>)</td></tr>
+<tr><td class="k"><code>:'&lt;,'&gt;s/old/new/g</code></td><td class="d">Replace inside the selection (press <kbd>:</kbd> in Visual mode)</td></tr>
+<tr><td class="k"><code>:g/pattern/d</code></td><td class="d">Delete every line that matches</td></tr>
+<tr><td class="k"><code>:v/pattern/d</code></td><td class="d">Delete every line that doesn't match</td></tr>
+<tr><td class="k"><code>\c</code> in a search</td><td class="d">Ignore case for that search, e.g. <code>/error\c</code></td></tr>
+</table></section>
+
+<section class="c-cyan"><h2>Files &amp; quitting</h2><table>
+<tr><td class="k"><code>:w</code></td><td class="d">Save</td></tr>
+<tr><td class="k"><code>:wq</code> <code>:x</code> <kbd>ZZ</kbd></td><td class="d">Save and quit</td></tr>
+<tr><td class="k"><code>:q</code></td><td class="d">Quit (refuses if there are unsaved changes)</td></tr>
+<tr><td class="k"><code>:q!</code> <kbd>ZQ</kbd></td><td class="d">Quit and throw away changes</td></tr>
+<tr><td class="k"><code>:qa</code></td><td class="d">Quit every window</td></tr>
+<tr><td class="k"><code>:e file</code></td><td class="d">Open a file</td></tr>
+<tr><td class="k"><code>:e!</code></td><td class="d">Reload the file, discarding changes</td></tr>
+<tr><td class="k"><code>:w other.txt</code></td><td class="d">Save a copy under another name</td></tr>
+<tr><td class="k"><code>:r file</code></td><td class="d">Insert another file below the cursor</td></tr>
+<tr><td class="k"><code>:r !cmd</code></td><td class="d">Insert the output of a shell command</td></tr>
+<tr><td class="k"><code>:w !sudo tee %</code></td><td class="d">Save a file you opened without permission</td></tr>
+<tr><td class="k"><code>:Ex</code></td><td class="d">Browse files in the current folder (netrw)</td></tr>
+</table></section>
+
+<section class="c-pink"><h2>Buffers, windows &amp; tabs</h2><table>
+<tr><td class="k"><code>:ls</code></td><td class="d">List open files (buffers)</td></tr>
+<tr><td class="k"><code>:bn</code> <code>:bp</code></td><td class="d">Next / previous buffer</td></tr>
+<tr><td class="k"><code>:b name</code></td><td class="d">Switch to a buffer by part of its name (Tab completes)</td></tr>
+<tr><td class="k"><code>:bd</code></td><td class="d">Close the buffer</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>^</kbd></td><td class="d">Switch to the previous file</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd> <kbd>s</kbd> / <kbd>v</kbd></td><td class="d">Split top/bottom / left/right (or <code>:sp</code> <code>:vs</code>)</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd> <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td class="d">Move to the window left / down / up / right</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd> <kbd>w</kbd></td><td class="d">Go to the next window</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd> <kbd>q</kbd> / <kbd>o</kbd></td><td class="d">Close this window / close all the others</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd> <kbd>=</kbd></td><td class="d">Make all windows the same size</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd> <kbd>_</kbd> / <kbd>|</kbd></td><td class="d">Make this window as tall / wide as possible</td></tr>
+<tr><td class="k"><code>:tabnew</code></td><td class="d">Open a new tab</td></tr>
+<tr><td class="k"><kbd>gt</kbd> <kbd>gT</kbd></td><td class="d">Next / previous tab</td></tr>
+<tr><td class="k"><code>:tabclose</code></td><td class="d">Close the tab</td></tr>
+</table></section>
+
+<section class="c-purple"><h2>Registers, macros &amp; marks</h2><table>
+<tr><td class="k"><kbd>"</kbd><kbd>a</kbd><kbd>yy</kbd></td><td class="d">Yank the line into register <em>a</em></td></tr>
+<tr><td class="k"><kbd>"</kbd><kbd>a</kbd><kbd>p</kbd></td><td class="d">Paste from register <em>a</em></td></tr>
+<tr><td class="k"><kbd>"</kbd><kbd>0</kbd><kbd>p</kbd></td><td class="d">Paste the last yank, even after deleting something</td></tr>
+<tr><td class="k"><kbd>"</kbd><kbd>+</kbd><kbd>y</kbd> / <kbd>p</kbd></td><td class="d">Copy to / paste from the desktop clipboard <span class="warn">not in your vim</span></td></tr>
+<tr><td class="k"><code>:reg</code></td><td class="d">Show what's in every register</td></tr>
+<tr><td class="k"><kbd>q</kbd><kbd>a</kbd> … <kbd>q</kbd></td><td class="d">Record a macro into <em>a</em>, then stop</td></tr>
+<tr><td class="k"><kbd>@</kbd><kbd>a</kbd></td><td class="d">Play macro <em>a</em></td></tr>
+<tr><td class="k"><kbd>@@</kbd> <kbd>10@a</kbd></td><td class="d">Play the last macro again / play <em>a</em> ten times</td></tr>
+<tr><td class="k"><kbd>m</kbd><kbd>a</kbd></td><td class="d">Set mark <em>a</em> here (<em>A</em>–<em>Z</em> work across files)</td></tr>
+<tr><td class="k"><kbd>'</kbd><kbd>a</kbd> <kbd>`</kbd><kbd>a</kbd></td><td class="d">Jump to mark <em>a</em>'s line / exact spot</td></tr>
+<tr><td class="k"><kbd>`</kbd><kbd>.</kbd></td><td class="d">Jump to the last change</td></tr>
+<tr><td class="k"><kbd>''</kbd></td><td class="d">Jump back to where you were before the last jump</td></tr>
+</table>
+<div class="note">Your vim is built without clipboard support. Copy with the mouse, use Neovim, or install the <code>vim-gtk3</code> package to get it.</div></section>
+
+<section class="c-orange"><h2>Insert mode</h2><table>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>w</kbd></td><td class="d">Delete the word before the cursor</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>u</kbd></td><td class="d">Delete back to the start of the line</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>n</kbd> / <kbd>p</kbd></td><td class="d">Complete the word from the open files</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>r</kbd><kbd>"</kbd></td><td class="d">Paste the last yank without leaving Insert mode</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>o</kbd></td><td class="d">Run one Normal-mode command, then return</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>t</kbd> / <kbd>d</kbd></td><td class="d">Indent / unindent the line</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>v</kbd> <kbd>Tab</kbd></td><td class="d">Insert a real Tab or other special key literally</td></tr>
+</table></section>
+
+<section class="c-green"><h2>Folds, help &amp; settings</h2><table>
+<tr><td class="k"><kbd>zf</kbd>motion</td><td class="d">Create a fold, e.g. <kbd>zfap</kbd></td></tr>
+<tr><td class="k"><kbd>zo</kbd> <kbd>zc</kbd> <kbd>za</kbd></td><td class="d">Open / close / toggle a fold</td></tr>
+<tr><td class="k"><kbd>zR</kbd> <kbd>zM</kbd></td><td class="d">Open / close every fold</td></tr>
+<tr><td class="k"><code>:help word</code></td><td class="d">Help on anything, e.g. <code>:help ciw</code>, <code>:help ctrl-w</code></td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>]</kbd> / <kbd>Ctrl</kbd><kbd>o</kbd></td><td class="d">Follow a link in help / go back</td></tr>
+<tr><td class="k"><code>:set nu</code> <code>:set rnu</code></td><td class="d">Line numbers / relative line numbers (<code>nonu</code> to turn off)</td></tr>
+<tr><td class="k"><code>:set paste</code></td><td class="d">Paste from the terminal without auto-indent mess</td></tr>
+<tr><td class="k"><code>:set ic</code></td><td class="d">Ignore case in searches</td></tr>
+<tr><td class="k"><code>:syntax on</code></td><td class="d">Turn on syntax colours</td></tr>
+<tr><td class="k"><code>vimtutor</code></td><td class="d">A 30-minute interactive lesson (run it in the shell)</td></tr>
+</table></section>
+
+</div>
+<p class="none" id="none">No key matches that filter.</p>
+
+<footer>Counts go in front: <kbd>5j</kbd> moves down five lines, <kbd>3dd</kbd> deletes three lines, <kbd>2ciw</kbd> changes two words. The leader key is <kbd>\</kbd>, Vim's default, because you have no <code>~/.vimrc</code>. Plugins and custom mappings would go in that file.</footer>
+</div>
+<script src="filter.js"></script>
+</body>
+</html>

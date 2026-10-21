@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AstroNvim Keys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="top"><a class="home" href="cheatsheet.html">← All cheat sheets</a><a href="tmux.html">tmux</a><a href="vim.html">Vim</a><a href="astronvim.html" aria-current="page">AstroNvim</a></nav>
+<header>
+  <div>
+    <h1><span class="dollar">␣</span> astronvim<span class="cur">▍</span></h1>
+    <p class="sub">AstroNvim v4 on Neovim 0.10, with the stock template and no custom mappings yet. All <a href="vim.html">Vim keys</a> work too; these are what AstroNvim adds.</p>
+  </div>
+  <div class="prefix-card">
+    <div class="row"><kbd class="p">␣</kbd> = <kbd>Space</kbd>, the leader key</div>
+    <div class="row" style="color:var(--muted)">Press <kbd>Space</kbd> and wait: a menu lists every key.</div>
+  </div>
+</header>
+
+<div class="tools">
+  <label class="search" for="q"><input id="q" type="search" placeholder="filter: find, git, format, terminal…" autocomplete="off"></label>
+  <div class="legend">
+    <span><kbd class="p">␣</kbd><kbd>ff</kbd> Space, then f, then f</span>
+    <span><span class="warn">needs install</span> program missing</span>
+  </div>
+</div>
+
+<div class="grid" id="grid">
+
+<section class="c-purple"><h2>Basics</h2><table>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>w</kbd></td><td class="d">Save</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>s</kbd></td><td class="d">Save, even in Insert mode</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>q</kbd></td><td class="d">Close the window</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>Q</kbd></td><td class="d">Quit AstroNvim</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>q</kbd></td><td class="d">Quit without asking</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>n</kbd></td><td class="d">New empty file</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>R</kbd></td><td class="d">Rename the current file</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>/</kbd></td><td class="d">Comment / uncomment the line or selection</td></tr>
+<tr><td class="k"><kbd>Tab</kbd> <kbd>Shift</kbd><kbd>Tab</kbd></td><td class="d">Indent / unindent the selection (Visual mode)</td></tr>
+<tr><td class="k"><kbd>j</kbd> <kbd>k</kbd></td><td class="d">Move by screen line through wrapped text</td></tr>
+</table></section>
+
+<section class="c-green"><h2>Find <span class="where">Telescope</span></h2><table>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ff</kbd></td><td class="d">Find files</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fF</kbd></td><td class="d">Find all files, including hidden and ignored ones</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fg</kbd></td><td class="d">Find files tracked by git</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fw</kbd></td><td class="d">Search text in the project (uses ripgrep)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fW</kbd></td><td class="d">Search text in all files, including hidden ones</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fc</kbd></td><td class="d">Search for the word under the cursor</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>f/</kbd></td><td class="d">Search in the current file</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fb</kbd></td><td class="d">Open files (buffers)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fo</kbd></td><td class="d">Recently opened files</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>f</kbd><kbd>Enter</kbd></td><td class="d">Reopen the last search</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fk</kbd></td><td class="d">Search key mappings</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fh</kbd> <kbd class="p">␣</kbd><kbd>fm</kbd></td><td class="d">Search help / man pages</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fC</kbd></td><td class="d">Search commands</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fr</kbd> <kbd class="p">␣</kbd><kbd>f'</kbd></td><td class="d">Registers / marks</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fT</kbd></td><td class="d">TODO, FIXME and NOTE comments</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ft</kbd></td><td class="d">Try colour schemes</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>fa</kbd></td><td class="d">AstroNvim config files</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>j</kbd> / <kbd>k</kbd></td><td class="d">In the finder: next / previous result</td></tr>
+<tr><td class="k"><kbd>Enter</kbd></td><td class="d">Open; <kbd>Ctrl</kbd><kbd>v</kbd> / <kbd>Ctrl</kbd><kbd>x</kbd> / <kbd>Ctrl</kbd><kbd>t</kbd> in a split / horizontal split / tab</td></tr>
+<tr><td class="k"><kbd>Esc</kbd></td><td class="d">Close the finder (twice from Insert mode)</td></tr>
+</table></section>
+
+<section class="c-cyan"><h2>File explorer <span class="where">Neo-tree</span></h2><table>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>e</kbd></td><td class="d">Show / hide the explorer</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>o</kbd></td><td class="d">Switch focus between the explorer and the file</td></tr>
+<tr><td class="k"><kbd>l</kbd> <kbd>Enter</kbd></td><td class="d">Open the file or folder</td></tr>
+<tr><td class="k"><kbd>h</kbd></td><td class="d">Close the folder / go to its parent</td></tr>
+<tr><td class="k"><kbd>a</kbd></td><td class="d">New file (end the name with <code>/</code> for a folder)</td></tr>
+<tr><td class="k"><kbd>r</kbd> <kbd>d</kbd></td><td class="d">Rename / delete</td></tr>
+<tr><td class="k"><kbd>c</kbd> <kbd>m</kbd></td><td class="d">Copy / move</td></tr>
+<tr><td class="k"><kbd>y</kbd> <kbd>x</kbd> <kbd>p</kbd></td><td class="d">Copy / cut / paste files</td></tr>
+<tr><td class="k"><kbd>Y</kbd></td><td class="d">Copy the file's name or path</td></tr>
+<tr><td class="k"><kbd>O</kbd></td><td class="d">Open with the desktop's default app</td></tr>
+<tr><td class="k"><kbd>H</kbd></td><td class="d">Show / hide hidden files</td></tr>
+<tr><td class="k"><kbd>s</kbd> <kbd>S</kbd> <kbd>t</kbd></td><td class="d">Open in a split / horizontal split / tab</td></tr>
+<tr><td class="k"><kbd>?</kbd></td><td class="d">List every explorer key</td></tr>
+</table></section>
+
+<section class="c-pink"><h2>Buffers &amp; splits</h2><table>
+<tr><td class="k"><kbd>]b</kbd> <kbd>[b</kbd></td><td class="d">Next / previous buffer tab</td></tr>
+<tr><td class="k"><kbd>&gt;b</kbd> <kbd>&lt;b</kbd></td><td class="d">Move the tab right / left</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>c</kbd></td><td class="d">Close the buffer</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>C</kbd></td><td class="d">Close the buffer, discarding changes</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>bb</kbd></td><td class="d">Pick a buffer by its letter in the tab bar</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>bd</kbd></td><td class="d">Pick a buffer to close</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>bC</kbd></td><td class="d">Close all buffers</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>bp</kbd></td><td class="d">Go to the previous buffer</td></tr>
+<tr><td class="k"><kbd>|</kbd> <kbd>\</kbd></td><td class="d">Split left/right / top/bottom</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>b|</kbd> <kbd class="p">␣</kbd><kbd>b\</kbd></td><td class="d">Pick a buffer and open it in a split</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td class="d">Move to the split left / down / up / right</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>↑</kbd><kbd>→</kbd></td><td class="d">Resize the split</td></tr>
+<tr><td class="k"><kbd>]t</kbd> <kbd>[t</kbd></td><td class="d">Next / previous tab page</td></tr>
+</table></section>
+
+<section class="c-orange"><h2>Code &amp; LSP</h2><table>
+<tr><td class="k"><kbd>K</kbd></td><td class="d">Show documentation for the symbol</td></tr>
+<tr><td class="k"><kbd>gd</kbd> <kbd>gD</kbd></td><td class="d">Go to definition / declaration</td></tr>
+<tr><td class="k"><kbd>gy</kbd> <kbd>gI</kbd></td><td class="d">Go to the type's definition / the implementation</td></tr>
+<tr><td class="k"><kbd>grr</kbd> <kbd class="p">␣</kbd><kbd>lR</kbd></td><td class="d">Find references</td></tr>
+<tr><td class="k"><kbd>grn</kbd> <kbd class="p">␣</kbd><kbd>lr</kbd></td><td class="d">Rename the symbol everywhere</td></tr>
+<tr><td class="k"><kbd>gra</kbd> <kbd class="p">␣</kbd><kbd>la</kbd></td><td class="d">Code actions (quick fixes)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>lf</kbd></td><td class="d">Format the file or selection</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ls</kbd></td><td class="d">Search symbols in the file</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>lG</kbd></td><td class="d">Search symbols in the project</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>lS</kbd></td><td class="d">Symbol outline in a side panel</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>lh</kbd></td><td class="d">Show the function's parameters</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>li</kbd> <kbd class="p">␣</kbd><kbd>lI</kbd></td><td class="d">Language server info / formatter and linter info</td></tr>
+<tr><td class="k"><kbd>]r</kbd> <kbd>[r</kbd></td><td class="d">Next / previous use of the word under the cursor</td></tr>
+<tr><td class="k"><kbd>]f</kbd> <kbd>[f</kbd></td><td class="d">Next / previous function</td></tr>
+<tr><td class="k"><kbd>]a</kbd> <kbd>[a</kbd> <kbd>]k</kbd> <kbd>[k</kbd></td><td class="d">Next / previous argument, block</td></tr>
+<tr><td class="k"><kbd>]y</kbd> <kbd>[y</kbd></td><td class="d">Next / previous symbol</td></tr>
+<tr><td class="k"><kbd>]T</kbd> <kbd>[T</kbd></td><td class="d">Next / previous TODO comment</td></tr>
+</table>
+<div class="note">Language servers install with <kbd class="p">␣</kbd><kbd>pm</kbd> (Mason) or <code>:LspInstall</code>.</div></section>
+
+<section class="c-red"><h2>Diagnostics</h2><table>
+<tr><td class="k"><kbd>gl</kbd> <kbd class="p">␣</kbd><kbd>ld</kbd></td><td class="d">Show the error or warning under the cursor</td></tr>
+<tr><td class="k"><kbd>]d</kbd> <kbd>[d</kbd></td><td class="d">Next / previous problem</td></tr>
+<tr><td class="k"><kbd>]e</kbd> <kbd>[e</kbd></td><td class="d">Next / previous error only</td></tr>
+<tr><td class="k"><kbd>]w</kbd> <kbd>[w</kbd></td><td class="d">Next / previous warning only</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>lD</kbd></td><td class="d">Search every problem</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>xq</kbd> <kbd class="p">␣</kbd><kbd>xl</kbd></td><td class="d">Open the quickfix / location list</td></tr>
+<tr><td class="k"><kbd>]q</kbd> <kbd>[q</kbd></td><td class="d">Next / previous quickfix item</td></tr>
+</table></section>
+
+<section class="c-yellow"><h2>Completion <span class="where">Insert mode</span></h2><table>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>Space</kbd></td><td class="d">Open the suggestion menu</td></tr>
+<tr><td class="k"><kbd>Tab</kbd> <kbd>Shift</kbd><kbd>Tab</kbd></td><td class="d">Next / previous suggestion, or jump through snippet fields</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>j</kbd> / <kbd>k</kbd></td><td class="d">Next / previous suggestion</td></tr>
+<tr><td class="k"><kbd>Enter</kbd></td><td class="d">Accept the selected suggestion</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>e</kbd></td><td class="d">Close the menu</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>u</kbd> / <kbd>d</kbd></td><td class="d">Scroll the documentation popup</td></tr>
+</table></section>
+
+<section class="c-green"><h2>Git</h2><table>
+<tr><td class="k"><kbd>]g</kbd> <kbd>[g</kbd></td><td class="d">Next / previous changed block (hunk)</td></tr>
+<tr><td class="k"><kbd>]G</kbd> <kbd>[G</kbd></td><td class="d">Last / first hunk</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gp</kbd></td><td class="d">Preview the change</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gs</kbd> <kbd class="p">␣</kbd><kbd>gS</kbd></td><td class="d">Stage the hunk / the whole file</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gu</kbd></td><td class="d">Unstage the hunk</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gr</kbd> <kbd class="p">␣</kbd><kbd>gR</kbd></td><td class="d">Undo the hunk / the whole file's changes</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gl</kbd></td><td class="d">Who changed this line (blame)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gd</kbd></td><td class="d">Diff the file against the last commit</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gb</kbd></td><td class="d">Switch branch</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gc</kbd> <kbd class="p">␣</kbd><kbd>gC</kbd></td><td class="d">Browse commits / this file's commits</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>gg</kbd></td><td class="d">Open lazygit <span class="warn">needs lazygit</span></td></tr>
+</table></section>
+
+<section class="c-purple"><h2>Terminal</h2><table>
+<tr><td class="k"><kbd>F7</kbd> or <kbd>Ctrl</kbd><kbd>'</kbd></td><td class="d">Show / hide a floating terminal</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>tf</kbd></td><td class="d">Floating terminal</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>th</kbd> <kbd class="p">␣</kbd><kbd>tv</kbd></td><td class="d">Terminal in a bottom / side split</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>tp</kbd> <kbd class="p">␣</kbd><kbd>tn</kbd></td><td class="d">Python / Node prompt</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>tu</kbd></td><td class="d">Disk usage (gdu)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>tt</kbd></td><td class="d">System monitor <span class="warn">needs btm</span></td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td class="d">Leave the terminal for a neighbouring split</td></tr>
+<tr><td class="k"><kbd>Ctrl</kbd><kbd>\</kbd> <kbd>Ctrl</kbd><kbd>n</kbd></td><td class="d">Switch the terminal to Normal mode to scroll and copy</td></tr>
+</table></section>
+
+<section class="c-cyan"><h2>Toggles <span class="where">␣ u …</span></h2><table>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>un</kbd></td><td class="d">Cycle line numbers (relative / absolute / off)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>uw</kbd></td><td class="d">Line wrap</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>us</kbd></td><td class="d">Spell check</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ud</kbd></td><td class="d">Show errors and warnings</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>uf</kbd> <kbd class="p">␣</kbd><kbd>uF</kbd></td><td class="d">Format on save for this file / everywhere</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>uh</kbd></td><td class="d">Inline type hints</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ua</kbd></td><td class="d">Automatic closing brackets</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ub</kbd></td><td class="d">Dark / light background</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>uz</kbd></td><td class="d">Colour previews for <code>#hex</code> values</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>u|</kbd></td><td class="d">Indent guides</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>uD</kbd></td><td class="d">Dismiss notifications</td></tr>
+<tr><td class="k"><kbd>zR</kbd> <kbd>zM</kbd> <kbd>zp</kbd></td><td class="d">Open all folds / close all folds / peek inside a fold</td></tr>
+</table></section>
+
+<section class="c-pink"><h2>Sessions &amp; plugins</h2><table>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>Sl</kbd></td><td class="d">Restore the last session</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>S.</kbd></td><td class="d">Restore the session for this folder</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>Ss</kbd> <kbd class="p">␣</kbd><kbd>Sf</kbd></td><td class="d">Save a session / pick one to load</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>Sd</kbd></td><td class="d">Delete a session</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>pa</kbd></td><td class="d">Update plugins and language servers</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>ps</kbd></td><td class="d">Plugin status (Lazy)</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>pm</kbd></td><td class="d">Install language servers, formatters, linters (Mason)</td></tr>
+</table></section>
+
+<section class="c-orange"><h2>Debugger</h2><table>
+<tr><td class="k"><kbd>F5</kbd></td><td class="d">Start / continue</td></tr>
+<tr><td class="k"><kbd>F9</kbd></td><td class="d">Toggle a breakpoint</td></tr>
+<tr><td class="k"><kbd>F10</kbd> <kbd>F11</kbd></td><td class="d">Step over / step into</td></tr>
+<tr><td class="k"><kbd>Shift</kbd><kbd>F11</kbd></td><td class="d">Step out</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>du</kbd></td><td class="d">Show / hide the debugger panels</td></tr>
+<tr><td class="k"><kbd class="p">␣</kbd><kbd>dq</kbd></td><td class="d">End the debug session</td></tr>
+</table></section>
+
+</div>
+<p class="none" id="none">No key matches that filter.</p>
+
+<footer>Your config at <code>~/.config/nvim</code> is the unchanged AstroNvim template: every file in <code>lua/plugins/</code> starts with a line that turns it off. To add your own mappings, delete the first line of <code>lua/plugins/astrocore.lua</code> and edit its <code>mappings</code> table. These keys are for v4; AstroNvim v5 replaced Telescope and some others, so a few keys change if you upgrade.</footer>
+</div>
+<script src="filter.js"></script>
+</body>
+</html>
