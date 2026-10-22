@@ -1,0 +1,106 @@
+title: GDB Commands
+prompt: (gdb)
+name: gdb
+sub: The GNU debugger: breakpoints, stepping, memory, the text UI and remote debugging of embedded targets.
+aside: ⟨Enter⟩ repeats the last command
+aside: Most commands have short forms: `b`, `c`, `n`, `s`, `p`
+placeholder: filter: breakpoint, memory, register…
+legend: `p x` type it at the (gdb) prompt
+category: Debugging & reverse engineering
+order: 10
+color: red
+card: GDB
+blurb: Breakpoints and watchpoints, stepping, inspecting memory and registers, TUI, and OpenOCD targets.
+sample: `x/16xb addr`
+sample: `bt` backtrace
+
+## Start ¦  ¦ cyan
+`gdb ./prog` ¦ Load a program
+`gdb --args ./prog a b` ¦ Load it with arguments
+`gdb -p PID` ¦ Attach to a running process
+`gdb ./prog core` ¦ Open a crash dump
+`gdb -q -tui ./prog` ¦ Start quietly in the text UI
+`run` / `r` ¦ Run (`r < input.txt` feeds input)
+`start` ¦ Stop at the start of <code>main</code>
+`starti` ¦ Stop at the very first instruction
+`kill` / `quit` ¦ Stop the program / leave gdb
+
+## Breakpoints ¦  ¦ red
+`b main` ¦ Break at a function
+`b file.c:42` ¦ Break at a line
+`b *0x08001234` ¦ Break at an address
+`tbreak LOC` ¦ Break once
+`b f if x > 3` ¦ Break only when a condition is true
+`info breakpoints` / `i b` ¦ List breakpoints
+`delete 2` / `disable 2` / `enable 2` ¦ Remove / switch off / on breakpoint 2
+`watch var` ¦ Stop when a variable changes
+`rwatch var` / `awatch var` ¦ Stop when it's read / read or written
+`watch *(int *)0x20000000` ¦ Watch a memory address
+`catch syscall write` ¦ Stop on a system call
+`ignore 1 5` ¦ Skip breakpoint 1 the next 5 times
+
+## Step ¦  ¦ green
+`next` / `n` ¦ Next line, stepping over calls
+`step` / `s` ¦ Next line, stepping into calls
+`finish` ¦ Run until the current function returns
+`continue` / `c` ¦ Run until the next breakpoint
+`until 50` ¦ Run until line 50 (good for leaving loops)
+`nexti` / `ni` ¦ Next instruction, over calls
+`stepi` / `si` ¦ Next instruction, into calls
+
+## Inspect ¦  ¦ orange
+`p x` ¦ Print a value
+`p/x x` ¦ Print in hex (<code>/d</code> decimal, <code>/t</code> binary, <code>/c</code> char)
+`p *arr@10` ¦ Print 10 elements from a pointer
+`p $rax` ¦ Print a register
+`display x` ¦ Print x every time the program stops
+`info locals` / `info args` ¦ Local variables / function arguments
+`info registers` / `i r` ¦ All registers
+`ptype var` ¦ Show the type, including struct fields
+`x/16xb ADDR` ¦ 16 bytes in hex
+`x/8xw $sp` ¦ 8 words from the stack pointer
+`x/s ADDR` ¦ A string
+`x/10i $pc` ¦ The next 10 instructions
+`set var x = 5` ¦ Change a variable
+`p func(1)` ¦ Call a function in the program
+> `x/` format: a count, then a format (<code>x</code> hex, <code>d</code>, <code>u</code>, <code>t</code> binary, <code>c</code>, <code>s</code> string, <code>i</code> instruction), then a size (<code>b</code> 1, <code>h</code> 2, <code>w</code> 4, <code>g</code> 8 bytes).
+
+## Stack &amp; threads ¦  ¦ purple
+`bt` ¦ Backtrace: how you got here
+`bt full` ¦ Backtrace with local variables
+`frame 2` / `f 2` ¦ Look at frame 2
+`up` / `down` ¦ Move one frame up / down
+`info frame` ¦ Details of the current frame
+`info threads` ¦ List threads
+`thread 2` ¦ Switch to thread 2
+`thread apply all bt` ¦ Backtrace of every thread
+
+## Code &amp; text UI ¦  ¦ yellow
+`list` / `l` ¦ Show source around the current line
+`disassemble` ¦ Disassemble the function (<code>/r</code> adds raw bytes, <code>/s</code> source)
+`layout src` / `asm` / `regs` / `split` ¦ Choose the text UI windows
+⟨Ctrl⟩⟨x⟩ ⟨a⟩ ¦ Switch the text UI on / off
+⟨Ctrl⟩⟨x⟩ ⟨o⟩ ¦ Move focus to the next window
+⟨Ctrl⟩⟨l⟩ ¦ Redraw a messed-up screen
+`set disassembly-flavor intel` ¦ Intel syntax on x86
+`info functions REGEX` ¦ Find functions by name
+`info proc mappings` ¦ Memory map of the process
+
+## Remote &amp; embedded ¦  ¦ pink
+`gdb-multiarch fw.elf` ¦ GDB for non-x86 targets (ARM, RISC-V…)
+`target extended-remote :3333` ¦ Connect to OpenOCD (pyOCD and J-Link use other ports)
+`monitor reset halt` ¦ Send a command to the debug probe
+`load` ¦ Flash the loaded ELF to the target
+`add-symbol-file boot.elf` ¦ Add symbols for another image
+`x/4xw 0x40021000` ¦ Read peripheral registers
+`gdbserver :1234 ./prog` ¦ On a Linux target: serve a program to a remote gdb
+`target remote host:1234` ¦ Connect to that gdbserver
+
+## Setup ¦  ¦ green
+`set pagination off` ¦ Don't stop long output with "--Type return--"
+`set print pretty on` ¦ Print structs one field per line
+`set logging enabled on` ¦ Save output to gdb.txt
+`source cmds.gdb` ¦ Run commands from a file
+`define NAME` … `end` ¦ Make your own command
+`~/.gdbinit` ¦ Commands run every time gdb starts
+`help CMD` / `apropos WORD` ¦ Help on a command / search help

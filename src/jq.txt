@@ -1,0 +1,77 @@
+title: jq Filters
+prompt: |
+name: jq
+sub: Querying and reshaping JSON on the command line.
+aside: `jq . file.json` pretty-print
+aside: `jq -r` print strings without quotes
+placeholder: filter: select, map, csv…
+legend: `.field` a jq filter, written in single quotes in the shell
+category: Developer tools
+order: 30
+color: green
+card: jq
+blurb: Picking fields, filtering arrays, building new objects, strings and CSV output.
+sample: `.[] | select(.ok)`
+sample: `map(.name)`
+
+## Basics ¦  ¦ cyan
+`jq . data.json` ¦ Pretty-print
+`curl -s URL | jq .` ¦ Pretty-print an API response
+`jq -c .` ¦ One line per value (compact)
+`jq -r .name` ¦ Print a string without quotes
+`.a.b` ¦ A nested field
+`.a?` ¦ A field, without an error if the input isn't an object
+`.["key with spaces"]` ¦ A field with an awkward name
+`.[0]` / `.[-1]` ¦ First / last element
+`.[2:4]` ¦ A slice
+`.[]` ¦ Every element, one after another
+`.items[].id` ¦ The id of every item
+`keys` / `length` ¦ Field names / size
+`jq -s .` ¦ Read many JSON values into one array
+
+## Filter &amp; reshape ¦  ¦ pink
+`map(.name)` ¦ A list of every name
+`.[] | select(.age > 30)` ¦ Only the elements that match
+`map(select(.active))` ¦ Same, keeping an array
+`{name, id}` ¦ Keep just these fields
+`{id: .uid, n: .name}` ¦ New object with renamed fields
+`. + {seen: true}` ¦ Add a field
+`del(.password)` ¦ Remove a field
+`.count |= . + 1` ¦ Change a field in place
+`sort_by(.date)` / `reverse` ¦ Sort / reverse an array
+`group_by(.type)` ¦ Group into arrays by a field
+`unique_by(.id)` ¦ Drop duplicates
+`min_by(.price)` / `max_by(.price)` ¦ Smallest / largest
+`map(.price) | add` ¦ Sum
+`first` / `last` / `limit(3; .[])` ¦ The first / last / first three
+`to_entries` / `from_entries` ¦ Object to <code>[{key, value}]</code> and back
+`with_entries(.value |= tostring)` ¦ Change every value of an object
+
+## Strings &amp; output ¦  ¦ orange
+`"\(.first) \(.last)"` ¦ Put values inside a string
+`test("^err"; "i")` ¦ Regex match, ignoring case
+`sub("a"; "b")` / `gsub("a"; "b")` ¦ Replace first / every match
+`split(",")` / `join(", ")` ¦ String to array and back
+`ascii_downcase` / `ascii_upcase` ¦ Change case
+`tostring` / `tonumber` ¦ Convert
+`.[] | [.id, .name] | @csv` ¦ CSV rows (use <code>-r</code>)
+`.[] | [.id, .name] | @tsv` ¦ Tab-separated rows
+`@base64` / `@base64d` / `@uri` ¦ Encode / decode
+
+## Logic &amp; paths ¦  ¦ purple
+`if .ok then "yes" else "no" end` ¦ Choose a value
+`.name // "unknown"` ¦ Default when the value is null or missing
+`.. | .id? // empty` ¦ Every <code>id</code> at any depth
+`paths` ¦ Every path in the document
+`getpath(["a", "b"])` ¦ Read a value by path
+`select(.tags | index("x"))` ¦ Arrays that contain "x"
+`empty` ¦ Produce nothing (drop the value)
+
+## Command line ¦  ¦ green
+`jq --arg n "$NAME" '.[] | select(.name == $n)'` ¦ Pass a shell variable as a string
+`jq --argjson n 5 '.[$n]'` ¦ Pass a number or JSON
+`jq -e '.ok' > /dev/null` ¦ Exit status 1 if the result is false or null
+`jq -S .` ¦ Sort object keys
+`jq --tab .` ¦ Indent with tabs
+`jq -n '{a: 1}'` ¦ Build JSON without any input
+`jq '.' a.json > tmp && mv tmp a.json` ¦ Edit a file (jq can't write in place)

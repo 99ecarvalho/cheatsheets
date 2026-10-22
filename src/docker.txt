@@ -1,0 +1,81 @@
+title: Docker Commands
+prompt: $
+name: docker
+sub: Containers, images, volumes, Compose and cleanup.
+aside: `docker ps` what's running
+aside: `docker compose up -d` start a project
+placeholder: filter: logs, volume, prune…
+legend: `NAME` replace with your value
+legend: <span class="warn">careful</span> deletes data
+category: Developer tools
+order: 20
+color: cyan
+card: Docker
+blurb: Running and debugging containers, building images, volumes and networks, Compose and cleanup.
+sample: `docker exec -it NAME sh`
+sample: `docker compose logs -f`
+
+## Containers ¦  ¦ cyan
+`docker run -it --rm IMAGE sh` ¦ Start a throwaway container with a shell
+`docker run -d --name web -p 8080:80 nginx` ¦ Run in the background, port 8080 on the host to 80 inside
+`docker ps` ¦ Running containers (<code>-a</code> includes stopped ones)
+`docker logs -f NAME` ¦ Follow a container's output
+`docker exec -it NAME sh` ¦ Open a shell inside a running container
+`docker stop NAME` / `docker start NAME` ¦ Stop / start again
+`docker restart NAME` ¦ Restart
+`docker rm NAME` ¦ Remove a stopped container (<code>-f</code> stops it first)
+`docker cp NAME:/path .` ¦ Copy a file out (or the other way round)
+`docker inspect NAME` ¦ Every detail as JSON: IP, mounts, environment
+`docker stats` ¦ Live CPU and memory use
+⟨Ctrl⟩⟨p⟩ ⟨Ctrl⟩⟨q⟩ ¦ Detach from a container without stopping it
+
+## Images ¦  ¦ green
+`docker images` ¦ List images
+`docker pull IMAGE:TAG` ¦ Download an image
+`docker build -t NAME .` ¦ Build from the Dockerfile in this folder
+`docker build -f Dockerfile.dev -t NAME .` ¦ Build from another Dockerfile
+`docker tag NAME user/NAME:1.0` ¦ Give an image another name
+`docker push user/NAME:1.0` ¦ Upload to a registry
+`docker history IMAGE` ¦ The layers and their sizes
+`docker rmi IMAGE` ¦ Remove an image
+
+## Data &amp; settings ¦  ¦ yellow
+`-v "$PWD":/app` ¦ Share the current folder with the container
+`-v data:/var/lib/mysql` ¦ Keep data in a named volume
+`-e KEY=value` / `--env-file .env` ¦ Set environment variables
+`--network NET` ¦ Join a network; containers reach each other by name
+`--restart unless-stopped` ¦ Start again after a crash or reboot
+`docker volume ls` ¦ List volumes
+`docker network ls` / `docker network create NET` ¦ List / create networks
+
+## Compose ¦  ¦ pink
+`docker compose up -d` ¦ Start every service in the background
+`docker compose up -d --build` ¦ Rebuild images first
+`docker compose ps` ¦ Status of the services
+`docker compose logs -f SVC` ¦ Follow one service's output
+`docker compose exec SVC sh` ¦ Shell inside a service
+`docker compose run --rm SVC CMD` ¦ Run a one-off command
+`docker compose restart SVC` ¦ Restart a service
+`docker compose down` ¦ Stop and remove containers and networks
+`docker compose down -v` ¦ Also delete the volumes <span class="warn">careful</span>
+`docker compose config` ¦ Show the final merged configuration
+
+## Cleanup ¦  ¦ red
+`docker system df` ¦ Disk space used by images, containers and volumes
+`docker container prune` ¦ Remove stopped containers
+`docker image prune -a` ¦ Remove images no container uses
+`docker builder prune` ¦ Clear the build cache
+`docker system prune` ¦ Remove stopped containers, unused networks and dangling images
+`docker system prune -a --volumes` ¦ Remove everything unused, volumes included <span class="warn">careful</span>
+
+## Dockerfile ¦  ¦ purple
+`FROM python:3.12-slim` ¦ Base image
+`WORKDIR /app` ¦ Folder for the following steps
+`COPY requirements.txt .` ¦ Copy files in (copy dependency lists first for faster rebuilds)
+`RUN pip install -r requirements.txt` ¦ Run a command while building
+`ENV KEY=value` / `ARG NAME` ¦ Runtime variable / build-time variable
+`EXPOSE 8000` ¦ Document the port the app listens on
+`USER app` ¦ Don't run as root
+`CMD ["python", "app.py"]` ¦ Default command (<code>ENTRYPOINT</code> fixes the program, <code>CMD</code> its default arguments)
+`COPY --from=build /out /app` ¦ Multi-stage build: copy from an earlier stage
+> On Linux, `sudo usermod -aG docker $USER` lets you run docker without sudo after logging in again. Members of that group effectively have root access.

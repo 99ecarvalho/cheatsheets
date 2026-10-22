@@ -1,0 +1,73 @@
+title: fzf and ripgrep
+prompt: $
+name: fzf + rg
+sub: fzf, the fuzzy finder for files, history and anything else, and ripgrep (rg), a fast way to search text in files.
+aside: ⟨Ctrl⟩⟨r⟩ fuzzy history search
+aside: `rg TEXT` search the folder
+placeholder: filter: preview, hidden, type…
+legend: <span class="warn">requires</span> fzf shell integration
+category: Terminal & shell
+order: 30
+color: purple
+card: fzf + ripgrep
+blurb: Fuzzy-finding files and history, fzf's search syntax and previews, and ripgrep's most useful flags.
+sample: ⟨Ctrl⟩⟨t⟩ insert a file
+sample: `rg -t py TEXT`
+
+## fzf in the shell ¦  ¦ purple
+⟨Ctrl⟩⟨t⟩ ¦ Pick files and paste their paths <span class="warn">requires</span>
+⟨Ctrl⟩⟨r⟩ ¦ Fuzzy-search command history <span class="warn">requires</span>
+⟨Alt⟩⟨c⟩ ¦ Pick a folder and cd into it <span class="warn">requires</span>
+`vim **` ⟨Tab⟩ ¦ Fuzzy completion for files (also <code>cd **</code>, <code>kill -9 **</code>, <code>ssh **</code>) <span class="warn">requires</span>
+> Turn on the keys with `eval "$(fzf --zsh)"` in ~/.zshrc or `eval "$(fzf --bash)"` in ~/.bashrc (fzf 0.48 or newer). Older packages ship key-bindings scripts instead.
+
+## Inside fzf ¦  ¦ cyan
+⟨Ctrl⟩⟨j⟩ / ⟨Ctrl⟩⟨k⟩ ¦ Move down / up (also ⟨Ctrl⟩⟨n⟩ / ⟨Ctrl⟩⟨p⟩ and the arrows)
+⟨Enter⟩ ¦ Accept
+⟨Tab⟩ / ⟨Shift⟩⟨Tab⟩ ¦ Mark / unmark an item (with <code>-m</code>)
+⟨Esc⟩ or ⟨Ctrl⟩⟨c⟩ ¦ Cancel
+⟨Shift⟩⟨↑⟩ / ⟨↓⟩ ¦ Scroll the preview
+
+## Search syntax ¦  ¦ green
+`abc` ¦ Fuzzy match
+`'abc` ¦ Exact match
+`^abc` ¦ Starts with
+`abc$` ¦ Ends with
+`!abc` ¦ Doesn't contain
+`a b` ¦ Both terms (AND)
+`a | b` ¦ Either term (OR)
+
+## fzf recipes ¦  ¦ pink
+`vim "$(fzf)"` ¦ Open the file you pick
+`fzf -m` ¦ Allow picking several items
+`fzf --preview 'bat --color=always {}'` ¦ Show the file beside the list (requires bat)
+`fzf --height 40% --layout reverse` ¦ Open under the prompt, list from the top
+`git branch | fzf | xargs git switch` ¦ Pick a branch to switch to
+`ps aux | fzf | awk '{print $2}' | xargs kill` ¦ Pick a process to stop
+`export FZF_DEFAULT_COMMAND='rg --files --hidden'` ¦ Let fzf list files with ripgrep
+`export FZF_DEFAULT_OPTS='--height 40% --border'` ¦ Default options
+
+## ripgrep basics ¦  ¦ orange
+`rg TEXT` ¦ Search everything under this folder (regex)
+`rg -i TEXT` ¦ Ignore case (<code>-S</code>: only if TEXT is all lower case)
+`rg -w TEXT` ¦ Whole words only
+`rg -F 'a.b('` ¦ Plain text, not a regex
+`rg -C 3 TEXT` ¦ 3 lines of context (<code>-A</code> after, <code>-B</code> before)
+`rg -l TEXT` ¦ File names only
+`rg -c TEXT` ¦ Matches per file
+`rg -o 'id=\d+'` ¦ Print only the matching part
+`rg -e foo -e bar` ¦ Several patterns
+`rg -U 'start.*\n.*end'` ¦ Match across lines
+
+## ripgrep files ¦  ¦ yellow
+`rg -t py TEXT` ¦ Only Python files (<code>rg --type-list</code> shows every type)
+`rg -T js TEXT` ¦ Skip JavaScript files
+`rg -g '*.c' TEXT` ¦ Only files matching a glob
+`rg -g '!vendor/' TEXT` ¦ Skip a folder
+`rg --hidden TEXT` ¦ Include hidden files
+`rg -uu TEXT` ¦ Also files your .gitignore excludes
+`rg -uuu TEXT` ¦ Also binary files
+`rg --files` ¦ List the files rg would search
+`rg -z TEXT` ¦ Search inside compressed files
+`rg TEXT -r NEW` ¦ Show what a replacement would look like (files are not changed)
+> By default rg skips hidden files, binary files and anything in .gitignore.

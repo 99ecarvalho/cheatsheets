@@ -1,0 +1,73 @@
+title: Ghidra Keys
+prompt: ⚙
+name: ghidra
+sub: Default key bindings and the most useful windows in the Ghidra CodeBrowser.
+aside: ⟨G⟩ go to an address or name
+aside: ⟨L⟩ rename what's under the cursor
+placeholder: filter: rename, type, references…
+legend: keys work in the Listing; most also in the Decompiler
+legend: `Menu → Item` where to find it
+category: Debugging & reverse engineering
+order: 20
+color: orange
+card: Ghidra
+blurb: Navigating, renaming and retyping, defining data and functions, and the windows worth knowing.
+sample: ⟨Ctrl⟩⟨L⟩ retype variable
+sample: ⟨Ctrl⟩⟨Shift⟩⟨F⟩ references
+
+## Navigate ¦  ¦ cyan
+⟨G⟩ ¦ Go to an address, label or function
+double-click ¦ Follow a reference or jump to a function
+⟨Alt⟩⟨←⟩ / ⟨Alt⟩⟨→⟩ ¦ Back / forward through where you've been
+⟨Ctrl⟩⟨Shift⟩⟨F⟩ ¦ Show every reference to what's under the cursor
+middle-click ¦ Highlight every use of a name or register
+⟨S⟩ ¦ Search memory for bytes or text
+⟨Ctrl⟩⟨Shift⟩⟨E⟩ ¦ Search the program's text (listing and comments)
+
+## Mark up ¦  ¦ pink
+⟨L⟩ ¦ Rename a label, function or variable
+⟨;⟩ ¦ Add or edit a comment
+⟨Ctrl⟩⟨D⟩ ¦ Add a bookmark
+⟨E⟩ ¦ Give a constant a name (equate)
+⟨Ctrl⟩⟨Z⟩ / ⟨Ctrl⟩⟨Shift⟩⟨Z⟩ ¦ Undo / redo
+⟨Ctrl⟩⟨S⟩ ¦ Save the program
+
+## Code &amp; data ¦ Listing ¦ orange
+⟨D⟩ ¦ Disassemble from here
+⟨F⟩ ¦ Create a function here
+⟨C⟩ ¦ Clear: turn code or data back into raw bytes
+⟨T⟩ ¦ Choose a data type
+⟨B⟩ ¦ Cycle byte / word / dword / qword
+⟨P⟩ ¦ Make a pointer
+⟨'⟩ ¦ Cycle character and string types
+⟨[⟩ ¦ Make an array
+⟨Shift⟩⟨[⟩ ¦ Create a structure from the selection
+
+## Decompiler ¦  ¦ yellow
+⟨L⟩ ¦ Rename the variable or function
+⟨Ctrl⟩⟨L⟩ ¦ Change a variable's type
+⟨;⟩ ¦ Comment on the line
+middle-click ¦ Highlight every use of a variable
+right-click ¦ Edit the function signature, split variables, change how a constant is shown
+> Click a line in the decompiler to see the matching instructions in the Listing.
+
+## Windows worth knowing ¦  ¦ purple
+`Window → Defined Strings` ¦ Every string, with where it's used
+`Window → Symbol Tree` ¦ Functions, labels, classes, imports and exports
+`Window → Function Graph` ¦ The current function as a flow graph
+`Window → Function Call Trees` ¦ Who calls this, and what it calls
+`Window → Memory Map` ¦ Segments: add or change memory regions
+`Window → Data Type Manager` ¦ Structures, enums and imported headers
+`Window → Bytes` ¦ Hex view of the program
+`Window → Script Manager` ¦ Run and edit scripts
+`Window → Python` ¦ Interactive Python (Jython) console
+
+## Analysis ¦  ¦ green
+`Analysis → Auto Analyze` ¦ Run the analyzers again
+`Search → For Strings` ¦ Find strings that weren't defined yet
+`Search → For Scalars` ¦ Find a constant value in the code
+`Search → For Instruction Patterns` ¦ Search by instruction, with wildcards
+`File → Parse C Source` ¦ Import structs and prototypes from a header
+`File → Export Program` ¦ Save as C, binary, ELF and other formats
+`analyzeHeadless DIR PROJ -import BIN` ¦ Analyse without the GUI (in <code>support/</code>)
+> These are the defaults. To check or change them: <code>Edit → Tool Options → Key Bindings</code>.

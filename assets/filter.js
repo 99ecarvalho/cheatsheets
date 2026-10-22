@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 // Filter box for the cheat sheets: "/" focuses it, Esc clears it.
 (function () {
   var q = document.getElementById('q');

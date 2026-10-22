@@ -1,0 +1,70 @@
+title: SSH Commands
+prompt: $
+name: ssh
+sub: Connecting, keys, tunnels, copying files, escape keys and the config file.
+aside: `ssh -v HOST` see why a login fails
+aside: ⟨Enter⟩ ⟨~⟩ ⟨.⟩ kill a frozen session
+placeholder: filter: key, tunnel, copy…
+legend: `HOST` a hostname, IP or alias from ~/.ssh/config
+category: Terminal & shell
+order: 40
+color: cyan
+card: SSH
+blurb: Keys and agents, port forwarding, jump hosts, scp and rsync, escape keys and ~/.ssh/config.
+sample: `ssh -L 8080:localhost:80 HOST`
+sample: `ssh -J jump HOST`
+
+## Connect ¦  ¦ cyan
+`ssh user@HOST` ¦ Log in
+`ssh -p 2222 HOST` ¦ Use another port
+`ssh -i ~/.ssh/key HOST` ¦ Use a specific key
+`ssh HOST 'df -h'` ¦ Run one command and come back
+`ssh -t HOST htop` ¦ Run an interactive program
+`ssh -J jump HOST` ¦ Go through a jump host
+`ssh -v HOST` ¦ Show every step (<code>-vvv</code> for more)
+`ssh -X HOST` ¦ Show remote graphical programs on your screen
+`ssh -A HOST` ¦ Forward your key agent (only to hosts you trust)
+
+## Keys ¦  ¦ green
+`ssh-keygen -t ed25519 -C "laptop"` ¦ Make a new key pair
+`ssh-copy-id user@HOST` ¦ Install your public key on a server
+`ssh-add` ¦ Load your key into the agent (asks for the passphrase once)
+`ssh-add -l` ¦ List loaded keys
+`eval "$(ssh-agent)"` ¦ Start an agent if none is running
+`ssh-keygen -lf key.pub` ¦ Show a key's fingerprint
+`ssh-keygen -R HOST` ¦ Forget a host's old key after it was reinstalled
+`chmod 600 ~/.ssh/id_ed25519` ¦ Fix "permissions are too open"
+
+## Tunnels ¦  ¦ pink
+`ssh -L 8080:localhost:80 HOST` ¦ Local port 8080 reaches port 80 on the server
+`ssh -L 5432:db:5432 HOST` ¦ Reach a machine only the server can see
+`ssh -R 9000:localhost:3000 HOST` ¦ Server port 9000 reaches port 3000 on your machine
+`ssh -D 1080 HOST` ¦ SOCKS proxy through the server
+`ssh -N -f -L … HOST` ¦ Tunnel only, in the background
+
+## Copy files ¦  ¦ yellow
+`scp FILE HOST:/path/` ¦ Copy a file to the server
+`scp HOST:/path/FILE .` ¦ Copy a file from the server
+`scp -r DIR HOST:` ¦ Copy a folder to your home on the server
+`rsync -avz --progress DIR/ HOST:DIR/` ¦ Sync a folder, sending only what changed
+`sftp HOST` ¦ Interactive transfers (<code>get</code>, <code>put</code>, <code>ls</code>)
+`sshfs HOST:/path ~/mnt` ¦ Mount a remote folder (requires sshfs)
+
+## Escape keys ¦ type at the start of a line ¦ red
+⟨~⟩ ⟨.⟩ ¦ Close a frozen connection
+⟨~⟩ ⟨Ctrl⟩⟨z⟩ ¦ Suspend ssh and return to your local shell
+⟨~⟩ ⟨#⟩ ¦ List forwarded connections
+⟨~⟩ ⟨C⟩ ¦ Open a prompt to add a tunnel, e.g. <code>-L 8080:localhost:80</code>
+⟨~⟩ ⟨?⟩ ¦ List all escape keys
+> Press ⟨Enter⟩ first if you're not sure you're at the start of a line.
+
+## ~/.ssh/config ¦  ¦ purple
+`Host pi` ¦ Start a block; then <code>ssh pi</code> uses its settings
+`HostName 192.168.1.20` ¦ The real address
+`User pi` / `Port 2222` ¦ Default user and port
+`IdentityFile ~/.ssh/id_pi` ¦ Key for this host
+`ProxyJump bastion` ¦ Always go through a jump host
+`LocalForward 8080 localhost:80` ¦ Open a tunnel whenever you connect
+`ServerAliveInterval 60` ¦ Keep idle connections from dropping
+`ControlMaster auto` ¦ Reuse one connection for many sessions (with <code>ControlPath</code> and <code>ControlPersist 10m</code>)
+`Host *` ¦ Settings for every host (put it last)

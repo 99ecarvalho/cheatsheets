@@ -1,0 +1,81 @@
+title: nmap Scans
+prompt: #
+name: nmap
+sub: Host discovery, port scanning, service and OS detection, scripts and output formats.
+aside: `nmap -sn 192.168.1.0/24` what's on my network
+aside: `nmap -sV HOST` what's running
+placeholder: filter: udp, version, output…
+legend: some scans need root: run with `sudo`
+category: Networking
+order: 20
+color: pink
+card: nmap
+blurb: Choosing targets and ports, scan types, version and OS detection, timing, NSE scripts and saving results.
+sample: `nmap -sV -sC HOST`
+sample: `nmap -p- HOST`
+
+## Targets ¦  ¦ cyan
+`nmap HOST` ¦ The 1000 most common TCP ports of one host
+`nmap 192.168.1.0/24` ¦ A subnet
+`nmap 10.0.0.1-50` ¦ A range
+`nmap -iL hosts.txt` ¦ Targets from a file
+`--exclude 10.0.0.1` ¦ Leave some out
+`nmap -6 HOST` ¦ IPv6
+
+## Find hosts ¦  ¦ green
+`nmap -sn NET` ¦ Which hosts are up, without scanning ports
+`nmap -Pn HOST` ¦ Skip the "is it up?" check (for hosts that block ping)
+`nmap -PS22,80,443 NET` ¦ Find hosts by TCP SYN to these ports
+`nmap -n …` ¦ Skip DNS lookups (faster)
+`nmap --traceroute HOST` ¦ Show the route
+> On a local network, nmap finds hosts with ARP, which works even when they ignore ping.
+
+## Scan types ¦  ¦ pink
+`nmap -sS HOST` ¦ SYN scan: fast, the default when run as root
+`nmap -sT HOST` ¦ Full TCP connect: the default without root
+`nmap -sU HOST` ¦ UDP (slow; combine with <code>--top-ports</code>)
+`nmap -sV HOST` ¦ Detect service names and versions
+`nmap -O HOST` ¦ Guess the operating system
+`nmap -sC HOST` ¦ Run the default scripts
+`nmap -A HOST` ¦ OS, versions, default scripts and traceroute together
+
+## Ports ¦  ¦ orange
+`-p 22` ¦ One port
+`-p 22,80,443` / `-p 1-1024` ¦ A list / a range
+`-p-` ¦ All 65535 ports
+`-p U:53,T:80` ¦ Mix UDP and TCP
+`-F` ¦ The 100 most common ports
+`--top-ports 20` ¦ The N most common ports
+`--open` ¦ Only show open ports
+> Port states: <em>open</em> something answers, <em>closed</em> reachable but nothing listens, <em>filtered</em> a firewall drops the probes.
+
+## Speed &amp; detail ¦  ¦ yellow
+`-T4` ¦ Faster timing for good networks (<code>-T0</code> slowest to <code>-T5</code> fastest)
+`--min-rate 1000` ¦ At least 1000 packets per second
+`-v` / `-vv` ¦ Show results as they're found
+`--reason` ¦ Why each port got its state
+`--packet-trace` ¦ Every packet sent and received
+⟨Space⟩ ¦ While a scan runs: show progress
+
+## Output ¦  ¦ purple
+`-oN scan.txt` ¦ Save as normal text
+`-oX scan.xml` ¦ Save as XML
+`-oG scan.gnmap` ¦ Save in a grep-friendly format
+`-oA scan` ¦ All three at once
+`--resume scan.gnmap` ¦ Continue a stopped scan
+
+## Scripts (NSE) ¦  ¦ red
+`--script http-title` ¦ Web page titles
+`--script 'ssh-*'` ¦ Every script whose name starts with ssh-
+`--script vuln` ¦ Scripts that check for known vulnerabilities
+`--script-help NAME` ¦ What a script does
+`--script-args KEY=VALUE` ¦ Pass options to scripts
+`--script-updatedb` ¦ Refresh the script index
+
+## Recipes ¦  ¦ green
+`sudo nmap -sn 192.168.1.0/24` ¦ List the devices on your network
+`nmap -p- -T4 HOST` ¦ Every TCP port of one host
+`nmap -sV -sC -p 22,80,443 HOST` ¦ Services and details on chosen ports
+`nmap -p 80,443 --script http-title NET` ¦ Every web server on a network, with its title
+`sudo nmap -sU --top-ports 20 HOST` ¦ Common UDP services
+> Only scan hosts and networks you own or have written permission to test.

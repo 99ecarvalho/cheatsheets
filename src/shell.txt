@@ -1,0 +1,94 @@
+title: Shell Keys
+prompt: $
+name: shell
+sub: Command-line editing, history and expansion in zsh and bash, using the default emacs-style keys.
+aside: ⟨Ctrl⟩⟨r⟩ search your history
+aside: ⟨Alt⟩⟨.⟩ reuse the last argument
+placeholder: filter: history, delete word, redirect…
+legend: ⟨Alt⟩ can also be pressed as ⟨Esc⟩ then the key
+legend: <span class="omt">zsh</span> zsh only
+category: Terminal & shell
+order: 20
+color: yellow
+card: Shell (zsh & bash)
+blurb: Line editing, history tricks, redirection, brace expansion and job control.
+sample: ⟨Ctrl⟩⟨r⟩ history search
+sample: `sudo !!` redo as root
+
+## Move ¦ on the command line ¦ cyan
+⟨Ctrl⟩⟨a⟩ / ⟨Ctrl⟩⟨e⟩ ¦ Start / end of the line
+⟨Alt⟩⟨b⟩ / ⟨Alt⟩⟨f⟩ ¦ Back / forward one word
+⟨Ctrl⟩⟨b⟩ / ⟨Ctrl⟩⟨f⟩ ¦ Back / forward one character
+⟨Ctrl⟩⟨x⟩⟨Ctrl⟩⟨x⟩ ¦ Jump between the start of the line and the cursor
+
+## Edit ¦  ¦ pink
+⟨Ctrl⟩⟨w⟩ ¦ Delete the word before the cursor
+⟨Alt⟩⟨d⟩ ¦ Delete the word after the cursor
+⟨Ctrl⟩⟨u⟩ ¦ Delete to the start of the line (zsh: the whole line)
+⟨Ctrl⟩⟨k⟩ ¦ Delete to the end of the line
+⟨Ctrl⟩⟨y⟩ ¦ Paste what you just deleted
+⟨Ctrl⟩⟨_⟩ ¦ Undo
+⟨Ctrl⟩⟨t⟩ / ⟨Alt⟩⟨t⟩ ¦ Swap two characters / two words
+⟨Alt⟩⟨u⟩ ⟨Alt⟩⟨l⟩ ⟨Alt⟩⟨c⟩ ¦ Upper-case / lower-case / capitalise the word
+⟨Ctrl⟩⟨x⟩⟨Ctrl⟩⟨e⟩ ¦ Edit the command in your editor (bash; zsh with oh-my-zsh)
+⟨Alt⟩⟨q⟩ ¦ Put this line aside, run another, get it back <span class="omt">zsh</span>
+
+## History ¦  ¦ green
+⟨Ctrl⟩⟨r⟩ ¦ Search back through history; press again for older matches
+⟨Ctrl⟩⟨g⟩ ¦ Cancel the search
+⟨↑⟩ ⟨↓⟩ ¦ Previous / next command (zsh: matching what you typed with oh-my-zsh)
+⟨Alt⟩⟨.⟩ ¦ Insert the last argument of the previous command; repeat for older ones
+`!!` ¦ The previous command, e.g. `sudo !!`
+`!$` ¦ The last argument of the previous command
+`!*` ¦ All arguments of the previous command
+`!git` ¦ The last command starting with <em>git</em>
+`!42` ¦ Command number 42 from <code>history</code>
+`^old^new` ¦ Run the previous command again with <em>old</em> replaced
+`history 20` ¦ The last 20 commands
+`fc` ¦ Open the previous command in your editor, then run it
+> Start a command with a space to keep it out of history (bash with <code>HISTCONTROL=ignorespace</code>, zsh with <code>setopt histignorespace</code>).
+
+## Jobs &amp; control ¦  ¦ red
+⟨Ctrl⟩⟨c⟩ ¦ Stop the running command
+⟨Ctrl⟩⟨z⟩ ¦ Pause it and get the prompt back
+`fg` / `bg` ¦ Resume the paused job in the foreground / background
+`jobs` ¦ List jobs; `fg %2` brings back job 2
+`cmd &` ¦ Start in the background
+`nohup cmd &` ¦ Keep running after you log out
+`disown` ¦ Detach a background job from the shell
+⟨Ctrl⟩⟨d⟩ ¦ End of input; on an empty line, exit the shell
+⟨Ctrl⟩⟨l⟩ ¦ Clear the screen
+`reset` ¦ Fix a terminal showing garbage characters
+
+## Redirect &amp; pipe ¦  ¦ orange
+`cmd > file` ¦ Write output to a file (replaces it)
+`cmd >> file` ¦ Append to a file
+`cmd 2> err.log` ¦ Write errors to a file
+`cmd > out.log 2>&1` ¦ Output and errors to the same file
+`cmd &> file` ¦ Same thing, shorter
+`cmd < file` ¦ Read input from a file
+`a | b` ¦ Send a's output to b
+`a |& b` ¦ Send output and errors to b
+`cmd | tee file` ¦ Show the output and save it
+`cmd <<< "text"` ¦ Feed a string as input
+`diff <(cmd1) <(cmd2)` ¦ Compare the output of two commands
+`cmd > /dev/null 2>&1` ¦ Throw all output away
+
+## Expansion ¦  ¦ purple
+`cp file{,.bak}` ¦ Same as <code>cp file file.bak</code>
+`mkdir -p src/{lib,bin}` ¦ Make several folders at once
+`echo {1..10}` ¦ Number ranges (also <code>{a..z}</code>, <code>{01..10}</code>)
+`$(cmd)` ¦ Insert a command's output
+`$?` ¦ Exit status of the last command (0 means success)
+`$!` ¦ Process ID of the last background job
+`cd -` ¦ Go back to the previous folder
+`**/*.c` ¦ Every .c file in all subfolders (bash needs <code>shopt -s globstar</code>)
+`ls *(.om[1,5])` ¦ The five newest regular files <span class="omt">zsh</span>
+
+## Chaining ¦  ¦ cyan
+`a && b` ¦ Run b only if a succeeded
+`a || b` ¦ Run b only if a failed
+`a ; b` ¦ Run both, one after the other
+`time cmd` ¦ How long a command takes
+`watch -n 1 cmd` ¦ Re-run a command every second
+`xargs` ¦ Turn input lines into arguments: `find . -name '*.o' | xargs rm`

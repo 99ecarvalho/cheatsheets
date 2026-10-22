@@ -1,0 +1,108 @@
+title: VS Code Keys
+prompt: ⌘
+name: vscode
+sub: Default Visual Studio Code shortcuts on Linux. On Windows most are the same; on macOS use ⌘ for Ctrl.
+aside: ⟨Ctrl⟩⟨Shift⟩⟨P⟩ run any command
+aside: ⟨Ctrl⟩⟨P⟩ open a file by name
+placeholder: filter: cursor, rename, terminal…
+legend: ⟨Ctrl⟩⟨K⟩ ⟨Ctrl⟩⟨S⟩ press one combination, then the next
+category: Editors
+order: 30
+color: purple
+card: VS Code
+blurb: Command palette, multi-cursor editing, code navigation, search, split editors and debugging.
+sample: ⟨Ctrl⟩⟨D⟩ next match
+sample: ⟨F12⟩ go to definition
+
+## General ¦  ¦ purple
+⟨Ctrl⟩⟨Shift⟩⟨P⟩ or ⟨F1⟩ ¦ Command palette: every command, searchable
+⟨Ctrl⟩⟨P⟩ ¦ Open a file by name
+⟨Ctrl⟩⟨,⟩ ¦ Settings
+⟨Ctrl⟩⟨K⟩ ⟨Ctrl⟩⟨S⟩ ¦ Keyboard shortcuts (and change them)
+⟨Ctrl⟩⟨K⟩ ⟨Ctrl⟩⟨T⟩ ¦ Change colour theme
+⟨Ctrl⟩⟨B⟩ ¦ Show / hide the sidebar
+⟨Ctrl⟩⟨J⟩ ¦ Show / hide the bottom panel
+⟨Ctrl⟩⟨Shift⟩⟨E⟩ ¦ Explorer
+⟨Ctrl⟩⟨Shift⟩⟨F⟩ ¦ Search in all files
+⟨Ctrl⟩⟨Shift⟩⟨G⟩ ¦ Source control (git)
+⟨Ctrl⟩⟨Shift⟩⟨D⟩ ¦ Run and debug
+⟨Ctrl⟩⟨Shift⟩⟨X⟩ ¦ Extensions
+⟨Ctrl⟩⟨K⟩ ⟨Z⟩ ¦ Zen mode (⟨Esc⟩ ⟨Esc⟩ to leave)
+
+## Edit lines ¦  ¦ pink
+⟨Ctrl⟩⟨X⟩ / ⟨Ctrl⟩⟨C⟩ ¦ Cut / copy the whole line when nothing is selected
+⟨Alt⟩⟨↑⟩ / ⟨↓⟩ ¦ Move the line up / down
+⟨Ctrl⟩⟨Shift⟩⟨Alt⟩⟨↑⟩ / ⟨↓⟩ ¦ Copy the line up / down
+⟨Ctrl⟩⟨Shift⟩⟨K⟩ ¦ Delete the line
+⟨Ctrl⟩⟨Enter⟩ / ⟨Ctrl⟩⟨Shift⟩⟨Enter⟩ ¦ New line below / above
+⟨Ctrl⟩⟨]⟩ / ⟨Ctrl⟩⟨[⟩ ¦ Indent / unindent
+⟨Ctrl⟩⟨/⟩ ¦ Comment / uncomment the line
+⟨Ctrl⟩⟨Shift⟩⟨A⟩ ¦ Block comment
+⟨Ctrl⟩⟨Shift⟩⟨\⟩ ¦ Jump to the matching bracket
+⟨Ctrl⟩⟨Shift⟩⟨I⟩ ¦ Format the document
+⟨Ctrl⟩⟨K⟩ ⟨Ctrl⟩⟨F⟩ ¦ Format the selection
+⟨Ctrl⟩⟨Z⟩ / ⟨Ctrl⟩⟨Shift⟩⟨Z⟩ ¦ Undo / redo
+
+## Multi-cursor &amp; selection ¦  ¦ orange
+⟨Ctrl⟩⟨D⟩ ¦ Select the next match of the current word (repeat to add more)
+⟨Ctrl⟩⟨K⟩ ⟨Ctrl⟩⟨D⟩ ¦ Skip this match and go to the next
+⟨Ctrl⟩⟨Shift⟩⟨L⟩ ¦ Select every match
+⟨Alt⟩ + click ¦ Add a cursor
+⟨Shift⟩⟨Alt⟩⟨↑⟩ / ⟨↓⟩ ¦ Add a cursor above / below
+⟨Shift⟩⟨Alt⟩⟨I⟩ ¦ Put a cursor at the end of every selected line
+⟨Shift⟩⟨Alt⟩ + drag ¦ Select a column (box)
+⟨Ctrl⟩⟨U⟩ ¦ Undo the last cursor action
+⟨Ctrl⟩⟨L⟩ ¦ Select the line
+⟨Shift⟩⟨Alt⟩⟨→⟩ / ⟨←⟩ ¦ Grow / shrink the selection
+⟨Esc⟩ ¦ Back to one cursor
+
+## Code navigation ¦  ¦ cyan
+⟨Ctrl⟩⟨G⟩ ¦ Go to line
+⟨Ctrl⟩⟨Shift⟩⟨O⟩ ¦ Go to a symbol in the file (type <code>:</code> to group them)
+⟨Ctrl⟩⟨T⟩ ¦ Go to a symbol anywhere in the project
+⟨F12⟩ or ⟨Ctrl⟩ + click ¦ Go to definition
+⟨Alt⟩⟨F12⟩ ¦ Peek at the definition in place
+⟨Shift⟩⟨F12⟩ ¦ Show references
+⟨F2⟩ ¦ Rename the symbol everywhere
+⟨Ctrl⟩⟨.⟩ ¦ Quick fix and refactor menu
+⟨Ctrl⟩⟨Space⟩ ¦ Show suggestions
+⟨Ctrl⟩⟨Shift⟩⟨Space⟩ ¦ Show parameter hints
+⟨F8⟩ / ⟨Shift⟩⟨F8⟩ ¦ Next / previous problem
+⟨Ctrl⟩⟨Shift⟩⟨M⟩ ¦ Problems panel
+⟨Ctrl⟩⟨Alt⟩⟨-⟩ / ⟨Ctrl⟩⟨Shift⟩⟨-⟩ ¦ Go back / forward
+⟨Ctrl⟩⟨Shift⟩⟨[⟩ / ⟨]⟩ ¦ Fold / unfold the block
+⟨Ctrl⟩⟨K⟩ ⟨Ctrl⟩⟨0⟩ / ⟨Ctrl⟩⟨J⟩ ¦ Fold / unfold everything
+
+## Search &amp; replace ¦  ¦ green
+⟨Ctrl⟩⟨F⟩ / ⟨Ctrl⟩⟨H⟩ ¦ Find / replace in the file
+⟨F3⟩ / ⟨Shift⟩⟨F3⟩ ¦ Next / previous match
+⟨Alt⟩⟨Enter⟩ ¦ Select every match of the search
+⟨Alt⟩⟨C⟩ ⟨Alt⟩⟨W⟩ ⟨Alt⟩⟨R⟩ ¦ Toggle match case / whole word / regex
+⟨Ctrl⟩⟨Shift⟩⟨F⟩ / ⟨Ctrl⟩⟨Shift⟩⟨H⟩ ¦ Find / replace in all files
+
+## Editors &amp; tabs ¦  ¦ yellow
+⟨Ctrl⟩⟨\⟩ ¦ Split the editor
+⟨Ctrl⟩⟨1⟩ ⟨2⟩ ⟨3⟩ ¦ Focus editor group 1 / 2 / 3
+⟨Ctrl⟩⟨Tab⟩ ¦ Switch between open files
+⟨Ctrl⟩⟨PgUp⟩ / ⟨PgDn⟩ ¦ Previous / next tab
+⟨Ctrl⟩⟨W⟩ ¦ Close the file
+⟨Ctrl⟩⟨K⟩ ⟨W⟩ ¦ Close every file
+⟨Ctrl⟩⟨Shift⟩⟨T⟩ ¦ Reopen the last closed file
+⟨Ctrl⟩⟨K⟩ ⟨V⟩ ¦ Markdown preview beside the file
+
+## Terminal &amp; debug ¦  ¦ red
+⟨Ctrl⟩⟨`⟩ ¦ Show / hide the terminal
+⟨Ctrl⟩⟨Shift⟩⟨`⟩ ¦ New terminal
+⟨Ctrl⟩⟨Shift⟩⟨5⟩ ¦ Split the terminal
+⟨F5⟩ ¦ Start / continue debugging
+⟨Shift⟩⟨F5⟩ / ⟨Ctrl⟩⟨Shift⟩⟨F5⟩ ¦ Stop / restart
+⟨F9⟩ ¦ Toggle a breakpoint
+⟨F10⟩ / ⟨F11⟩ / ⟨Shift⟩⟨F11⟩ ¦ Step over / into / out
+
+## From the shell ¦  ¦ green
+`code .` ¦ Open the current folder
+`code -r FILE` ¦ Open in the window that's already open
+`code -g FILE:42` ¦ Open a file at line 42
+`code -d A B` ¦ Compare two files
+`code --install-extension ID` ¦ Install an extension
+`code --list-extensions` ¦ List installed extensions

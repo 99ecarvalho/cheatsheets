@@ -1,0 +1,96 @@
+title: tmux Keys
+prompt: $
+name: tmux
+sub: Standard tmux keys plus the extras from <a href="https://github.com/gpakosz/.tmux">oh-my-tmux</a>, marked in pink.
+aside: ⟪prefix⟫ = ⟨Ctrl⟩+⟨b⟩ (oh-my-tmux adds ⟨Ctrl⟩+⟨a⟩)
+aside: <span style="color:var(--muted)">Press the prefix, let go, then press the key.</span>
+placeholder: filter: split, zoom, rename…
+legend: ⟪prefix⟫ then key
+legend: <span class="omt">oh-my-tmux</span> only with oh-my-tmux
+legend: <span class="warn">requires</span> needs an extra program
+category: Terminal & shell
+order: 10
+color: green
+card: tmux
+blurb: Sessions, windows, panes and copy mode, with oh-my-tmux bindings marked.
+sample: ⟪prefix⟫ ⟨c⟩ new window
+sample: ⟪prefix⟫ ⟨z⟩ zoom pane
+
+## From the shell ¦ outside tmux ¦ green
+<code>tmux</code> ¦ Start a new session
+<code>tmux new -s work</code> ¦ Start a session named <em>work</em>
+<code>tmux ls</code> ¦ List sessions
+<code>tmux a</code> ¦ Attach to the last session
+<code>tmux a -t work</code> ¦ Attach to session <em>work</em>
+<code>tmux kill-session -t work</code> ¦ Kill session <em>work</em>
+<code>tmux kill-server</code> ¦ Kill every session
+
+## Sessions ¦  ¦ green
+<kbd class="p">prefix</kbd><kbd>d</kbd> ¦ Detach (the session keeps running)
+<kbd class="p">prefix</kbd><kbd>s</kbd> ¦ Pick a session from a list
+<kbd class="p">prefix</kbd><kbd>$</kbd> ¦ Rename the session
+<kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>c</kbd> ¦ New session <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>f</kbd> ¦ Find a session by name and switch to it <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>Shift</kbd><kbd>Tab</kbd> ¦ Go to the last session <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>(</kbd> <kbd>)</kbd> ¦ Previous / next session
+
+## Windows ¦ tabs in the status bar ¦ cyan
+<kbd class="p">prefix</kbd><kbd>c</kbd> ¦ New window
+<kbd class="p">prefix</kbd><kbd>,</kbd> ¦ Rename the window
+<kbd class="p">prefix</kbd><kbd>1</kbd>…<kbd>9</kbd> ¦ Go to window 1–9 (numbering starts at 1)
+<kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>h</kbd> / <kbd>l</kbd> ¦ Previous / next window, repeatable <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>Tab</kbd> ¦ Go to the last window <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>w</kbd> ¦ Pick a window from a tree of all sessions
+<kbd class="p">prefix</kbd><kbd>f</kbd> ¦ Find a window by its text
+<kbd class="p">prefix</kbd><kbd>.</kbd> ¦ Move the window to another number
+<kbd class="p">prefix</kbd><kbd>&amp;</kbd> ¦ Close the window (asks first)
+> <kbd>n</kbd> and <kbd>p</kbd> no longer switch windows. oh-my-tmux unbinds them, and <kbd class="p">prefix</kbd><kbd>p</kbd> now pastes.
+
+## Panes ¦ splits ¦ pink
+<kbd class="p">prefix</kbd><kbd>-</kbd> ¦ Split into top and bottom <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>_</kbd> ¦ Split into left and right <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>"</kbd> <kbd>%</kbd> ¦ The standard splits (top/bottom, left/right) still work
+<kbd class="p">prefix</kbd><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> ¦ Move to the pane left / down / up / right, repeatable <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>↑</kbd><kbd>→</kbd> ¦ Move between panes with the arrow keys
+<kbd class="p">prefix</kbd><kbd>H</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd> ¦ Resize by 2 cells, repeatable <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>z</kbd> ¦ Zoom the pane to full window and back
+<kbd class="p">prefix</kbd><kbd>+</kbd> ¦ Maximize the pane into its own window and back <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>&gt;</kbd> <kbd>&lt;</kbd> ¦ Swap with the next / previous pane <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>q</kbd> ¦ Show pane numbers (press one to jump to it)
+<kbd class="p">prefix</kbd><kbd>o</kbd> ¦ Go to the next pane
+<kbd class="p">prefix</kbd><kbd>Space</kbd> ¦ Cycle through the preset layouts
+<kbd class="p">prefix</kbd><kbd>!</kbd> ¦ Move the pane into a window of its own
+<kbd class="p">prefix</kbd><kbd>x</kbd> ¦ Close the pane (asks first)
+mouse ¦ Click a pane to focus it, drag a border to resize it
+> With oh-my-tmux's defaults, new panes open in the current pane's folder and new windows in the home folder.
+
+## Copy mode ¦ scroll &amp; select ¦ orange
+<kbd class="p">prefix</kbd><kbd>Enter</kbd> ¦ Enter copy mode <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>[</kbd> ¦ Enter copy mode (standard)
+mouse wheel ¦ Scroll up; enters copy mode by itself
+<kbd>↑</kbd><kbd>↓</kbd> <kbd>PgUp</kbd><kbd>PgDn</kbd> ¦ Move and scroll
+<kbd>Ctrl</kbd><kbd>Space</kbd> · vi: <kbd>v</kbd> ¦ Start selecting
+<kbd>Alt</kbd><kbd>w</kbd> · vi: <kbd>y</kbd> ¦ Copy the selection to the tmux buffer
+vi: <kbd>Ctrl</kbd><kbd>v</kbd> ¦ Switch to block (rectangle) selection <span class="omt">oh-my-tmux</span>
+<kbd>Ctrl</kbd><kbd>s</kbd> / <kbd>Ctrl</kbd><kbd>r</kbd> · vi: <kbd>/</kbd> <kbd>?</kbd> ¦ Search down / up
+<kbd>q</kbd> or <kbd>Esc</kbd> ¦ Leave copy mode
+mouse drag ¦ Select and copy. Hold <kbd>Shift</kbd> while dragging to use the terminal's own selection instead
+> Copy mode uses emacs-style keys unless vi mode is on. tmux picks vi mode when <code>$EDITOR</code> or <code>$VISUAL</code> contains "vi"; to force it, add <code>set -g mode-keys vi</code> to <code>~/.tmux.conf.local</code>. oh-my-tmux keeps copies inside tmux unless <code>tmux_conf_copy_to_os_clipboard=true</code>.
+
+## Paste buffers ¦  ¦ yellow
+<kbd class="p">prefix</kbd><kbd>p</kbd> ¦ Paste the latest copy <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>]</kbd> ¦ Paste the latest copy (standard)
+<kbd class="p">prefix</kbd><kbd>P</kbd> ¦ Choose which copy to paste <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>b</kbd> ¦ List copies <span class="omt">oh-my-tmux</span>
+
+## Config &amp; misc ¦  ¦ purple
+<kbd class="p">prefix</kbd><kbd>e</kbd> ¦ Edit <code>~/.tmux.conf.local</code>, then reload it <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>r</kbd> ¦ Reload the config <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>m</kbd> ¦ Turn the mouse on or off <span class="omt">oh-my-tmux</span>
+<kbd>Ctrl</kbd><kbd>l</kbd> ¦ Clear the screen <em>and</em> the scrollback (no prefix) <span class="omt">oh-my-tmux</span>
+<kbd class="p">prefix</kbd><kbd>?</kbd> ¦ List every key binding
+<kbd class="p">prefix</kbd><kbd>:</kbd> ¦ Type a tmux command, for example <code>setw synchronize-panes</code>
+<kbd class="p">prefix</kbd><kbd>t</kbd> ¦ Show a big clock
+<kbd class="p">prefix</kbd><kbd>U</kbd> ¦ Open a URL shown in the pane <span class="warn">requires urlview</span>
+<kbd class="p">prefix</kbd><kbd>F</kbd> ¦ Pick a file path shown in the pane <span class="warn">requires fpp</span>
+<kbd class="p">prefix</kbd><kbd>Ctrl</kbd><kbd>a</kbd> ¦ Send a real <kbd>Ctrl</kbd><kbd>a</kbd> to the program (start of line in the shell)

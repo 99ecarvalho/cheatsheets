@@ -1,0 +1,68 @@
+title: tcpdump Filters
+prompt: #
+name: tcpdump
+sub: Capturing packets from the command line, with the filter syntax shared by Wireshark's capture filters.
+aside: `sudo tcpdump -i any -nn port 53` watch DNS
+aside: `-w file.pcap` save for Wireshark
+placeholder: filter: port, host, write…
+legend: needs root: run with `sudo`
+category: Networking
+order: 10
+color: cyan
+card: tcpdump
+blurb: Capture options, writing and reading pcap files, filters by host, port and protocol, and recipes.
+sample: `tcpdump -nn host 10.0.0.5`
+sample: `-w cap.pcap`
+
+## Capture ¦  ¦ cyan
+`tcpdump -D` ¦ List interfaces
+`tcpdump -i eth0` ¦ Capture on one interface (<code>-i any</code> for all)
+`tcpdump -n` ¦ Don't look up host names (<code>-nn</code>: port names too)
+`tcpdump -c 100` ¦ Stop after 100 packets
+`tcpdump -v` ¦ More detail (<code>-vv</code>, <code>-vvv</code>)
+`tcpdump -A` ¦ Show packet contents as text
+`tcpdump -X` ¦ Show contents in hex and text
+`tcpdump -e` ¦ Show MAC addresses
+`tcpdump -tttt` ¦ Full date and time on each line
+`tcpdump -l | grep …` ¦ Line-buffered output for piping
+`tcpdump -q` ¦ Less protocol detail
+
+## Files ¦  ¦ green
+`tcpdump -w cap.pcap` ¦ Save packets to a file
+`tcpdump -r cap.pcap` ¦ Read a saved file (filters work here too)
+`tcpdump -w cap.pcap -C 100 -W 5` ¦ Rotate through 5 files of 100 MB
+`tcpdump -G 3600 -w 'cap-%H%M.pcap'` ¦ Start a new file every hour
+`tcpdump -U -w - | wireshark -k -i -` ¦ Watch live in Wireshark
+
+## Filter by address ¦  ¦ pink
+`host 10.0.0.5` ¦ To or from a host
+`src host 10.0.0.5` / `dst host 10.0.0.5` ¦ Only from / only to
+`net 192.168.1.0/24` ¦ A whole subnet
+`ether host aa:bb:cc:dd:ee:ff` ¦ A MAC address
+`ip6` ¦ IPv6 only
+
+## Filter by port &amp; protocol ¦  ¦ orange
+`port 443` ¦ One port, either direction
+`src port 53` / `dst port 80` ¦ Only source / only destination
+`portrange 8000-8100` ¦ A range of ports
+`tcp` / `udp` / `icmp` / `arp` ¦ One protocol
+`'tcp[tcpflags] & tcp-syn != 0'` ¦ TCP SYN packets (connection attempts)
+`'tcp[tcpflags] & tcp-rst != 0'` ¦ TCP resets
+`greater 1000` / `less 100` ¦ By packet size
+`vlan 10` ¦ Traffic on VLAN 10
+
+## Combine ¦  ¦ purple
+`host A and port 80` ¦ Both must match
+`port 80 or port 443` ¦ Either matches
+`not port 22` ¦ Everything except SSH
+`'host A and (port 80 or port 443)'` ¦ Group with parentheses; quote the whole filter
+> Put the filter last: `tcpdump -i eth0 -nn 'tcp and port 80'`.
+
+## Recipes ¦  ¦ yellow
+`tcpdump -i any -nn port 53` ¦ DNS lookups
+`tcpdump -nn -v 'port 67 or port 68'` ¦ DHCP
+`tcpdump -nn icmp` ¦ Ping and other ICMP
+`tcpdump -A -s 0 'tcp port 80'` ¦ Plain HTTP requests and responses
+`tcpdump -i eth0 -nn not port 22` ¦ All traffic except your own SSH session
+`ssh HOST 'sudo tcpdump -U -w - not port 22' | wireshark -k -i -` ¦ Capture on a remote machine, watch locally
+> Only capture traffic on networks you own or are authorised to monitor.

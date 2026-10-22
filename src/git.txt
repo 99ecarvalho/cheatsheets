@@ -1,0 +1,114 @@
+title: Git Commands
+prompt: $
+name: git
+sub: The commands you look up most, from daily work to rescuing lost commits.
+aside: `git help <command>` full manual
+aside: `git status` tells you what to do next
+placeholder: filter: undo, branch, stash…
+legend: `NAME` replace with your value
+legend: <span class="warn">careful</span> can throw away work
+category: Developer tools
+order: 10
+color: orange
+card: Git
+blurb: Branches, remotes, undoing mistakes, stash, history search and rewriting commits before you push.
+sample: `git switch -c name`
+sample: `git reflog` find lost work
+
+## Setup ¦ once per machine ¦ purple
+`git config --global user.name "NAME"` ¦ Set the name on your commits
+`git config --global user.email EMAIL` ¦ Set the email on your commits
+`git config --global init.defaultBranch main` ¦ New repositories start on <em>main</em>
+`git config --global pull.rebase true` ¦ Rebase instead of merging when you pull
+`git config --global core.editor vim` ¦ Editor for commit messages
+`git config --global -l` ¦ Show every global setting
+
+## Start ¦  ¦ green
+`git init` ¦ Turn the current folder into a repository
+`git clone URL` ¦ Copy a repository
+`git clone --depth 1 URL` ¦ Copy only the latest commit (faster)
+`git remote -v` ¦ Show the remotes
+`git remote add origin URL` ¦ Add a remote called <em>origin</em>
+`git remote set-url origin URL` ¦ Point <em>origin</em> somewhere else
+
+## Everyday ¦  ¦ cyan
+`git status -s` ¦ Short list of changed files
+`git add FILE` ¦ Stage a file for the next commit
+`git add -p` ¦ Choose which changes to stage, piece by piece
+`git diff` ¦ Changes not staged yet
+`git diff --staged` ¦ Changes staged for the next commit
+`git commit -m "MSG"` ¦ Commit the staged changes
+`git commit -am "MSG"` ¦ Stage every tracked file and commit
+`git log --oneline --graph --all` ¦ History of every branch as a graph
+`git show HEAD` ¦ What the last commit changed
+`git blame FILE` ¦ Who last changed each line
+
+## Branches ¦  ¦ pink
+`git branch` ¦ List local branches (<code>-a</code> includes remote ones)
+`git switch -c NAME` ¦ Create a branch and switch to it
+`git switch NAME` ¦ Switch to a branch
+`git switch -` ¦ Switch back to the previous branch
+`git branch -m NEW` ¦ Rename the current branch
+`git branch -d NAME` ¦ Delete a merged branch
+`git branch -D NAME` ¦ Delete a branch even if unmerged <span class="warn">careful</span>
+`git merge NAME` ¦ Merge a branch into the current one
+`git rebase main` ¦ Replay the current branch on top of <em>main</em>
+> "Detached HEAD" means you're on a commit, not a branch. Run `git switch -c NAME` to keep any work you make there.
+
+## Remote ¦  ¦ yellow
+`git fetch` ¦ Download new commits without changing your files
+`git pull` ¦ Fetch and update the current branch
+`git push` ¦ Upload the current branch
+`git push -u origin NAME` ¦ First push of a new branch
+`git push --force-with-lease` ¦ Overwrite the remote after a rebase, unless someone else pushed
+`git push origin --delete NAME` ¦ Delete a branch on the remote
+`git fetch --prune` ¦ Forget remote branches that were deleted
+
+## Undo ¦ fix mistakes ¦ red
+`git restore FILE` ¦ Throw away unstaged changes to a file <span class="warn">careful</span>
+`git restore --staged FILE` ¦ Unstage a file, keeping the changes
+`git commit --amend` ¦ Change the last commit's message or add forgotten files
+`git commit --amend --no-edit` ¦ Add staged changes to the last commit
+`git reset --soft HEAD~1` ¦ Undo the last commit, keep its changes staged
+`git reset HEAD~1` ¦ Undo the last commit, keep its changes unstaged
+`git reset --hard HEAD~1` ¦ Delete the last commit and its changes <span class="warn">careful</span>
+`git revert HASH` ¦ New commit that undoes an old one (safe after pushing)
+`git reflog` ¦ Every place HEAD has been: find "lost" commits here
+`git branch rescue HASH` ¦ Bring a lost commit back as a branch
+> Commits are almost never truly lost: <code>git reflog</code> keeps them for about 90 days. Uncommitted changes are not protected, so stash or commit before a hard reset.
+
+## Stash ¦ park unfinished work ¦ orange
+`git stash` ¦ Put changes aside and clean the working tree
+`git stash -u` ¦ Include untracked files too
+`git stash list` ¦ List stashes
+`git stash pop` ¦ Re-apply the latest stash and remove it
+`git stash apply stash@{1}` ¦ Re-apply a specific stash and keep it
+`git stash show -p` ¦ See what's in the latest stash
+`git stash drop` ¦ Delete the latest stash
+
+## History &amp; search ¦  ¦ purple
+`git log -p FILE` ¦ Every change to one file
+`git log --author=NAME` ¦ Commits by one person
+`git log --since="2 weeks ago"` ¦ Recent commits
+`git log -S "TEXT"` ¦ Commits that added or removed some text
+`git grep "TEXT"` ¦ Search tracked files
+`git log main..feature` ¦ Commits on <em>feature</em> that aren't on <em>main</em>
+`git diff main...feature` ¦ What <em>feature</em> changed since it branched off
+`git shortlog -sn` ¦ Commit count per author
+
+## Rewrite ¦ before you push ¦ orange
+`git rebase -i HEAD~3` ¦ Edit the last 3 commits: reorder, <em>squash</em>, <em>fixup</em>, <em>reword</em>, <em>drop</em>
+`git commit --fixup HASH` ¦ Make a commit that will fold into an older one
+`git rebase -i --autosquash main` ¦ Fold the fixup commits in
+`git cherry-pick HASH` ¦ Copy one commit onto the current branch
+`git rebase --continue` ¦ Carry on after fixing a conflict
+`git rebase --abort` ¦ Give up and go back to before the rebase
+`git merge --abort` ¦ Give up on a conflicted merge
+
+## More ¦  ¦ green
+`git tag -a v1.0 -m "MSG"` ¦ Tag a release
+`git push --tags` ¦ Upload tags
+`git clean -n` then `git clean -fd` ¦ Preview, then delete untracked files <span class="warn">careful</span>
+`git worktree add ../DIR BRANCH` ¦ Check out a second branch in another folder
+`git bisect start` ¦ Find the commit that broke something: mark <code>good</code> / <code>bad</code>, finish with <code>reset</code>
+`git submodule update --init --recursive` ¦ Fetch submodules after cloning

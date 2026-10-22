@@ -1,0 +1,77 @@
+title: systemd and journalctl
+prompt: #
+name: systemctl
+sub: Managing services with systemctl and reading logs with journalctl.
+aside: `systemctl status NAME` is it running, and why not
+aside: `journalctl -u NAME -f` follow its log
+placeholder: filter: enable, boot, since…
+legend: `NAME` a unit, e.g. nginx or ssh.service
+legend: most changes need `sudo`
+category: Developer tools
+order: 40
+color: yellow
+card: systemd
+blurb: Starting, enabling and inspecting services, reading logs by unit, boot and time, and timers.
+sample: `systemctl enable --now NAME`
+sample: `journalctl -b -p err`
+
+## Services ¦  ¦ cyan
+`systemctl status NAME` ¦ State, recent log lines and process ID
+`systemctl start NAME` / `stop NAME` ¦ Start / stop now
+`systemctl restart NAME` ¦ Restart
+`systemctl reload NAME` ¦ Re-read the configuration without restarting (if supported)
+`systemctl enable --now NAME` ¦ Start now and at every boot
+`systemctl disable --now NAME` ¦ Stop now and not at boot
+`systemctl is-active NAME` / `is-enabled NAME` ¦ Yes/no answers for scripts
+`systemctl mask NAME` / `unmask NAME` ¦ Block a service from starting at all / allow it again
+
+## Find units ¦  ¦ green
+`systemctl --failed` ¦ Units that failed
+`systemctl list-units --type=service` ¦ Loaded services
+`systemctl list-unit-files --state=enabled` ¦ What starts at boot
+`systemctl list-timers` ¦ Scheduled timers and when they run next
+`systemctl cat NAME` ¦ Show the unit file and its overrides
+`systemctl list-dependencies NAME` ¦ What it needs
+
+## Change units ¦  ¦ pink
+`systemctl edit NAME` ¦ Add an override without touching the original file
+`systemctl edit --full NAME` ¦ Edit a full copy of the unit
+`systemctl daemon-reload` ¦ Reload unit files after editing them by hand
+`systemctl revert NAME` ¦ Remove your overrides
+`systemctl --user …` ¦ The same commands for your own user services (no sudo)
+> Your own units go in <code>/etc/systemd/system/</code>, or <code>~/.config/systemd/user/</code> for user services.
+
+## Logs ¦ journalctl ¦ orange
+`journalctl -u NAME` ¦ One unit's log
+`journalctl -u NAME -f` ¦ Follow it live
+`journalctl -e` ¦ Open at the end
+`journalctl -n 50` ¦ The last 50 lines
+`journalctl -b` ¦ Since this boot (<code>-b -1</code> is the previous boot)
+`journalctl --list-boots` ¦ Every recorded boot
+`journalctl -p err` ¦ Errors and worse (<code>warning</code>, <code>info</code>, <code>debug</code>)
+`journalctl --since "1 hour ago"` ¦ By time (<code>today</code>, <code>yesterday</code>, <code>"2026-01-31 14:00"</code>, with <code>--until</code>)
+`journalctl -k` ¦ Kernel messages, like dmesg
+`journalctl _PID=1234` ¦ One process
+`journalctl -o cat` ¦ Messages only, no timestamps
+`journalctl --disk-usage` ¦ Space used by logs
+`journalctl --vacuum-time=2weeks` ¦ Delete logs older than two weeks
+
+## System ¦  ¦ purple
+`systemctl reboot` / `poweroff` / `suspend` ¦ Restart / shut down / sleep
+`systemd-analyze blame` ¦ Which services slow down boot
+`systemd-analyze critical-chain` ¦ The chain that decides boot time
+`hostnamectl` ¦ Hostname, OS and kernel
+`timedatectl` ¦ Clock, time zone and NTP sync
+`loginctl` ¦ Logged-in sessions
+`systemd-run --user --on-active=30m CMD` ¦ Run a command once, 30 minutes from now
+
+## Minimal service file ¦  ¦ yellow
+`[Unit]` ¦ Section with the description and ordering
+`Description=My app` ¦ Shown in <code>status</code>
+`After=network-online.target` ¦ Start after the network is up (with <code>Wants=</code> the same target)
+`[Service]` ¦ How to run it
+`ExecStart=/usr/local/bin/myapp` ¦ The command (full path)
+`User=myapp` ¦ Run as this user
+`Restart=on-failure` ¦ Start again if it crashes
+`[Install]` ¦ What enabling it means
+`WantedBy=multi-user.target` ¦ Start at normal boot

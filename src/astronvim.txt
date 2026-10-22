@@ -1,0 +1,173 @@
+title: AstroNvim Keys
+prompt: ␣
+name: astronvim
+sub: AstroNvim v4 default mappings. All <a href="vim.html">Vim keys</a> work too; these are what AstroNvim adds.
+aside: ⟪␣⟫ = ⟨Space⟩, the leader key
+aside: <span style="color:var(--muted)">Press ⟨Space⟩ and wait: a menu lists every key.</span>
+placeholder: filter: find, git, format, terminal…
+legend: ⟪␣⟫⟨ff⟩ Space, then f, then f
+legend: <span class="warn">requires</span> needs an extra program
+category: Editors
+order: 20
+color: pink
+card: AstroNvim
+blurb: The Space-leader keys AstroNvim v4 adds on top of Vim: finder, explorer, LSP, git, terminal.
+sample: ⟪␣⟫⟨ff⟩ find file
+sample: ⟪␣⟫⟨e⟩ explorer
+
+## Basics ¦  ¦ purple
+<kbd class="p">␣</kbd><kbd>w</kbd> ¦ Save
+<kbd>Ctrl</kbd><kbd>s</kbd> ¦ Save, even in Insert mode
+<kbd class="p">␣</kbd><kbd>q</kbd> ¦ Close the window
+<kbd class="p">␣</kbd><kbd>Q</kbd> ¦ Quit AstroNvim
+<kbd>Ctrl</kbd><kbd>q</kbd> ¦ Quit without asking
+<kbd class="p">␣</kbd><kbd>n</kbd> ¦ New empty file
+<kbd class="p">␣</kbd><kbd>R</kbd> ¦ Rename the current file
+<kbd class="p">␣</kbd><kbd>/</kbd> ¦ Comment / uncomment the line or selection
+<kbd>Tab</kbd> <kbd>Shift</kbd><kbd>Tab</kbd> ¦ Indent / unindent the selection (Visual mode)
+<kbd>j</kbd> <kbd>k</kbd> ¦ Move by screen line through wrapped text
+
+> Add your own mappings in <code>lua/plugins/astrocore.lua</code> of your config. The template ships that file switched off: delete its first line to use it. AstroNvim v5 replaced Telescope and changed some keys.
+
+## Find ¦ Telescope ¦ green
+<kbd class="p">␣</kbd><kbd>ff</kbd> ¦ Find files
+<kbd class="p">␣</kbd><kbd>fF</kbd> ¦ Find all files, including hidden and ignored ones
+<kbd class="p">␣</kbd><kbd>fg</kbd> ¦ Find files tracked by git
+<kbd class="p">␣</kbd><kbd>fw</kbd> ¦ Search text in the project (uses ripgrep)
+<kbd class="p">␣</kbd><kbd>fW</kbd> ¦ Search text in all files, including hidden ones
+<kbd class="p">␣</kbd><kbd>fc</kbd> ¦ Search for the word under the cursor
+<kbd class="p">␣</kbd><kbd>f/</kbd> ¦ Search in the current file
+<kbd class="p">␣</kbd><kbd>fb</kbd> ¦ Open files (buffers)
+<kbd class="p">␣</kbd><kbd>fo</kbd> ¦ Recently opened files
+<kbd class="p">␣</kbd><kbd>f</kbd><kbd>Enter</kbd> ¦ Reopen the last search
+<kbd class="p">␣</kbd><kbd>fk</kbd> ¦ Search key mappings
+<kbd class="p">␣</kbd><kbd>fh</kbd> <kbd class="p">␣</kbd><kbd>fm</kbd> ¦ Search help / man pages
+<kbd class="p">␣</kbd><kbd>fC</kbd> ¦ Search commands
+<kbd class="p">␣</kbd><kbd>fr</kbd> <kbd class="p">␣</kbd><kbd>f'</kbd> ¦ Registers / marks
+<kbd class="p">␣</kbd><kbd>fT</kbd> ¦ TODO, FIXME and NOTE comments
+<kbd class="p">␣</kbd><kbd>ft</kbd> ¦ Try colour schemes
+<kbd class="p">␣</kbd><kbd>fa</kbd> ¦ AstroNvim config files
+<kbd>Ctrl</kbd><kbd>j</kbd> / <kbd>k</kbd> ¦ In the finder: next / previous result
+<kbd>Enter</kbd> ¦ Open; <kbd>Ctrl</kbd><kbd>v</kbd> / <kbd>Ctrl</kbd><kbd>x</kbd> / <kbd>Ctrl</kbd><kbd>t</kbd> in a split / horizontal split / tab
+<kbd>Esc</kbd> ¦ Close the finder (twice from Insert mode)
+
+## File explorer ¦ Neo-tree ¦ cyan
+<kbd class="p">␣</kbd><kbd>e</kbd> ¦ Show / hide the explorer
+<kbd class="p">␣</kbd><kbd>o</kbd> ¦ Switch focus between the explorer and the file
+<kbd>l</kbd> <kbd>Enter</kbd> ¦ Open the file or folder
+<kbd>h</kbd> ¦ Close the folder / go to its parent
+<kbd>a</kbd> ¦ New file (end the name with <code>/</code> for a folder)
+<kbd>r</kbd> <kbd>d</kbd> ¦ Rename / delete
+<kbd>c</kbd> <kbd>m</kbd> ¦ Copy / move
+<kbd>y</kbd> <kbd>x</kbd> <kbd>p</kbd> ¦ Copy / cut / paste files
+<kbd>Y</kbd> ¦ Copy the file's name or path
+<kbd>O</kbd> ¦ Open with the desktop's default app
+<kbd>H</kbd> ¦ Show / hide hidden files
+<kbd>s</kbd> <kbd>S</kbd> <kbd>t</kbd> ¦ Open in a split / horizontal split / tab
+<kbd>?</kbd> ¦ List every explorer key
+
+## Buffers &amp; splits ¦  ¦ pink
+<kbd>]b</kbd> <kbd>[b</kbd> ¦ Next / previous buffer tab
+<kbd>&gt;b</kbd> <kbd>&lt;b</kbd> ¦ Move the tab right / left
+<kbd class="p">␣</kbd><kbd>c</kbd> ¦ Close the buffer
+<kbd class="p">␣</kbd><kbd>C</kbd> ¦ Close the buffer, discarding changes
+<kbd class="p">␣</kbd><kbd>bb</kbd> ¦ Pick a buffer by its letter in the tab bar
+<kbd class="p">␣</kbd><kbd>bd</kbd> ¦ Pick a buffer to close
+<kbd class="p">␣</kbd><kbd>bC</kbd> ¦ Close all buffers
+<kbd class="p">␣</kbd><kbd>bp</kbd> ¦ Go to the previous buffer
+<kbd>|</kbd> <kbd>\</kbd> ¦ Split left/right / top/bottom
+<kbd class="p">␣</kbd><kbd>b|</kbd> <kbd class="p">␣</kbd><kbd>b\</kbd> ¦ Pick a buffer and open it in a split
+<kbd>Ctrl</kbd><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> ¦ Move to the split left / down / up / right
+<kbd>Ctrl</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>↑</kbd><kbd>→</kbd> ¦ Resize the split
+<kbd>]t</kbd> <kbd>[t</kbd> ¦ Next / previous tab page
+
+## Code &amp; LSP ¦  ¦ orange
+<kbd>K</kbd> ¦ Show documentation for the symbol
+<kbd>gd</kbd> <kbd>gD</kbd> ¦ Go to definition / declaration
+<kbd>gy</kbd> <kbd>gI</kbd> ¦ Go to the type's definition / the implementation
+<kbd>grr</kbd> <kbd class="p">␣</kbd><kbd>lR</kbd> ¦ Find references
+<kbd>grn</kbd> <kbd class="p">␣</kbd><kbd>lr</kbd> ¦ Rename the symbol everywhere
+<kbd>gra</kbd> <kbd class="p">␣</kbd><kbd>la</kbd> ¦ Code actions (quick fixes)
+<kbd class="p">␣</kbd><kbd>lf</kbd> ¦ Format the file or selection
+<kbd class="p">␣</kbd><kbd>ls</kbd> ¦ Search symbols in the file
+<kbd class="p">␣</kbd><kbd>lG</kbd> ¦ Search symbols in the project
+<kbd class="p">␣</kbd><kbd>lS</kbd> ¦ Symbol outline in a side panel
+<kbd class="p">␣</kbd><kbd>lh</kbd> ¦ Show the function's parameters
+<kbd class="p">␣</kbd><kbd>li</kbd> <kbd class="p">␣</kbd><kbd>lI</kbd> ¦ Language server info / formatter and linter info
+<kbd>]r</kbd> <kbd>[r</kbd> ¦ Next / previous use of the word under the cursor
+<kbd>]f</kbd> <kbd>[f</kbd> ¦ Next / previous function
+<kbd>]a</kbd> <kbd>[a</kbd> <kbd>]k</kbd> <kbd>[k</kbd> ¦ Next / previous argument, block
+<kbd>]y</kbd> <kbd>[y</kbd> ¦ Next / previous symbol
+<kbd>]T</kbd> <kbd>[T</kbd> ¦ Next / previous TODO comment
+> Language servers install with <kbd class="p">␣</kbd><kbd>pm</kbd> (Mason) or <code>:LspInstall</code>.
+
+## Diagnostics ¦  ¦ red
+<kbd>gl</kbd> <kbd class="p">␣</kbd><kbd>ld</kbd> ¦ Show the error or warning under the cursor
+<kbd>]d</kbd> <kbd>[d</kbd> ¦ Next / previous problem
+<kbd>]e</kbd> <kbd>[e</kbd> ¦ Next / previous error only
+<kbd>]w</kbd> <kbd>[w</kbd> ¦ Next / previous warning only
+<kbd class="p">␣</kbd><kbd>lD</kbd> ¦ Search every problem
+<kbd class="p">␣</kbd><kbd>xq</kbd> <kbd class="p">␣</kbd><kbd>xl</kbd> ¦ Open the quickfix / location list
+<kbd>]q</kbd> <kbd>[q</kbd> ¦ Next / previous quickfix item
+
+## Completion ¦ Insert mode ¦ yellow
+<kbd>Ctrl</kbd><kbd>Space</kbd> ¦ Open the suggestion menu
+<kbd>Tab</kbd> <kbd>Shift</kbd><kbd>Tab</kbd> ¦ Next / previous suggestion, or jump through snippet fields
+<kbd>Ctrl</kbd><kbd>j</kbd> / <kbd>k</kbd> ¦ Next / previous suggestion
+<kbd>Enter</kbd> ¦ Accept the selected suggestion
+<kbd>Ctrl</kbd><kbd>e</kbd> ¦ Close the menu
+<kbd>Ctrl</kbd><kbd>u</kbd> / <kbd>d</kbd> ¦ Scroll the documentation popup
+
+## Git ¦  ¦ green
+<kbd>]g</kbd> <kbd>[g</kbd> ¦ Next / previous changed block (hunk)
+<kbd>]G</kbd> <kbd>[G</kbd> ¦ Last / first hunk
+<kbd class="p">␣</kbd><kbd>gp</kbd> ¦ Preview the change
+<kbd class="p">␣</kbd><kbd>gs</kbd> <kbd class="p">␣</kbd><kbd>gS</kbd> ¦ Stage the hunk / the whole file
+<kbd class="p">␣</kbd><kbd>gu</kbd> ¦ Unstage the hunk
+<kbd class="p">␣</kbd><kbd>gr</kbd> <kbd class="p">␣</kbd><kbd>gR</kbd> ¦ Undo the hunk / the whole file's changes
+<kbd class="p">␣</kbd><kbd>gl</kbd> ¦ Who changed this line (blame)
+<kbd class="p">␣</kbd><kbd>gd</kbd> ¦ Diff the file against the last commit
+<kbd class="p">␣</kbd><kbd>gb</kbd> ¦ Switch branch
+<kbd class="p">␣</kbd><kbd>gc</kbd> <kbd class="p">␣</kbd><kbd>gC</kbd> ¦ Browse commits / this file's commits
+<kbd class="p">␣</kbd><kbd>gg</kbd> ¦ Open lazygit <span class="warn">requires lazygit</span>
+
+## Terminal ¦  ¦ purple
+<kbd>F7</kbd> or <kbd>Ctrl</kbd><kbd>'</kbd> ¦ Show / hide a floating terminal
+<kbd class="p">␣</kbd><kbd>tf</kbd> ¦ Floating terminal
+<kbd class="p">␣</kbd><kbd>th</kbd> <kbd class="p">␣</kbd><kbd>tv</kbd> ¦ Terminal in a bottom / side split
+<kbd class="p">␣</kbd><kbd>tp</kbd> <kbd class="p">␣</kbd><kbd>tn</kbd> ¦ Python / Node prompt
+<kbd class="p">␣</kbd><kbd>tu</kbd> ¦ Disk usage (gdu)
+<kbd class="p">␣</kbd><kbd>tt</kbd> ¦ System monitor <span class="warn">requires bottom</span>
+<kbd>Ctrl</kbd><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> ¦ Leave the terminal for a neighbouring split
+<kbd>Ctrl</kbd><kbd>\</kbd> <kbd>Ctrl</kbd><kbd>n</kbd> ¦ Switch the terminal to Normal mode to scroll and copy
+
+## Toggles ¦ ␣ u … ¦ cyan
+<kbd class="p">␣</kbd><kbd>un</kbd> ¦ Cycle line numbers (relative / absolute / off)
+<kbd class="p">␣</kbd><kbd>uw</kbd> ¦ Line wrap
+<kbd class="p">␣</kbd><kbd>us</kbd> ¦ Spell check
+<kbd class="p">␣</kbd><kbd>ud</kbd> ¦ Show errors and warnings
+<kbd class="p">␣</kbd><kbd>uf</kbd> <kbd class="p">␣</kbd><kbd>uF</kbd> ¦ Format on save for this file / everywhere
+<kbd class="p">␣</kbd><kbd>uh</kbd> ¦ Inline type hints
+<kbd class="p">␣</kbd><kbd>ua</kbd> ¦ Automatic closing brackets
+<kbd class="p">␣</kbd><kbd>ub</kbd> ¦ Dark / light background
+<kbd class="p">␣</kbd><kbd>uz</kbd> ¦ Colour previews for <code>#hex</code> values
+<kbd class="p">␣</kbd><kbd>u|</kbd> ¦ Indent guides
+<kbd class="p">␣</kbd><kbd>uD</kbd> ¦ Dismiss notifications
+<kbd>zR</kbd> <kbd>zM</kbd> <kbd>zp</kbd> ¦ Open all folds / close all folds / peek inside a fold
+
+## Sessions &amp; plugins ¦  ¦ pink
+<kbd class="p">␣</kbd><kbd>Sl</kbd> ¦ Restore the last session
+<kbd class="p">␣</kbd><kbd>S.</kbd> ¦ Restore the session for this folder
+<kbd class="p">␣</kbd><kbd>Ss</kbd> <kbd class="p">␣</kbd><kbd>Sf</kbd> ¦ Save a session / pick one to load
+<kbd class="p">␣</kbd><kbd>Sd</kbd> ¦ Delete a session
+<kbd class="p">␣</kbd><kbd>pa</kbd> ¦ Update plugins and language servers
+<kbd class="p">␣</kbd><kbd>ps</kbd> ¦ Plugin status (Lazy)
+<kbd class="p">␣</kbd><kbd>pm</kbd> ¦ Install language servers, formatters, linters (Mason)
+
+## Debugger ¦  ¦ orange
+<kbd>F5</kbd> ¦ Start / continue
+<kbd>F9</kbd> ¦ Toggle a breakpoint
+<kbd>F10</kbd> <kbd>F11</kbd> ¦ Step over / step into
+<kbd>Shift</kbd><kbd>F11</kbd> ¦ Step out
+<kbd class="p">␣</kbd><kbd>du</kbd> ¦ Show / hide the debugger panels
+<kbd class="p">␣</kbd><kbd>dq</kbd> ¦ End the debug session

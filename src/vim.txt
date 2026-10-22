@@ -1,0 +1,170 @@
+title: Vim Keys
+prompt: :
+name: vim
+sub: Stock Vim keys and commands. Everything here also works in Neovim and AstroNvim.
+aside: ⟨Esc⟩ back to Normal mode, always safe
+aside: `:q!` quit without saving
+placeholder: filter: delete, replace, window…
+legend: ⟨Ctrl⟩⟨d⟩ hold Ctrl, press d
+legend: `:w` type it, then Enter
+legend: <span class="warn">requires</span> needs a build feature
+category: Editors
+order: 10
+color: cyan
+card: Vim
+blurb: Modes, motions, the operator + text-object grammar, search and replace, registers and macros.
+sample: ⟨ciw⟩ change word
+sample: `:%s/a/b/g` replace
+
+## Modes ¦  ¦ purple
+<kbd>i</kbd> <kbd>a</kbd> ¦ Insert before / after the cursor
+<kbd>I</kbd> <kbd>A</kbd> ¦ Insert at start / end of the line
+<kbd>o</kbd> <kbd>O</kbd> ¦ Open a new line below / above
+<kbd>v</kbd> ¦ Visual: select characters
+<kbd>V</kbd> ¦ Visual line: select whole lines
+<kbd>Ctrl</kbd><kbd>v</kbd> ¦ Visual block: select a rectangle
+<kbd>R</kbd> ¦ Replace mode: overtype
+<kbd>:</kbd> ¦ Command line
+<kbd>Esc</kbd> or <kbd>Ctrl</kbd><kbd>[</kbd> ¦ Back to Normal mode
+
+## Move ¦ counts work: 5j, 3w ¦ cyan
+<kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> ¦ Left / down / up / right
+<kbd>w</kbd> <kbd>b</kbd> <kbd>e</kbd> ¦ Next word start / previous word start / word end
+<kbd>W</kbd> <kbd>B</kbd> <kbd>E</kbd> ¦ Same, but words are separated only by spaces
+<kbd>0</kbd> <kbd>^</kbd> <kbd>$</kbd> ¦ Line start / first non-blank / line end
+<kbd>gg</kbd> <kbd>G</kbd> ¦ First / last line
+<kbd>42G</kbd> or <code>:42</code> ¦ Go to line 42
+<kbd>f</kbd><kbd>x</kbd> <kbd>t</kbd><kbd>x</kbd> ¦ Jump onto / just before the next <em>x</em> on the line
+<kbd>F</kbd><kbd>x</kbd> <kbd>T</kbd><kbd>x</kbd> ¦ Same, backwards
+<kbd>;</kbd> <kbd>,</kbd> ¦ Repeat the last f/t forwards / backwards
+<kbd>%</kbd> ¦ Jump to the matching bracket
+<kbd>{</kbd> <kbd>}</kbd> ¦ Previous / next blank line (paragraph)
+<kbd>H</kbd> <kbd>M</kbd> <kbd>L</kbd> ¦ Top / middle / bottom of the screen
+<kbd>Ctrl</kbd><kbd>d</kbd> / <kbd>u</kbd> ¦ Half a page down / up
+<kbd>Ctrl</kbd><kbd>f</kbd> / <kbd>b</kbd> ¦ A full page down / up
+<kbd>zz</kbd> <kbd>zt</kbd> <kbd>zb</kbd> ¦ Scroll so the cursor line is centred / at top / at bottom
+<kbd>Ctrl</kbd><kbd>o</kbd> / <kbd>i</kbd> ¦ Jump back / forward through where you've been
+<kbd>gd</kbd> ¦ Go to where the word under the cursor is defined (local)
+
+## Edit ¦  ¦ pink
+<kbd>x</kbd> ¦ Delete the character
+<kbd>r</kbd><kbd>x</kbd> ¦ Replace the character with <em>x</em>
+<kbd>dd</kbd> ¦ Delete (cut) the line
+<kbd>D</kbd> <kbd>C</kbd> ¦ Delete / change to the end of the line
+<kbd>cc</kbd> <kbd>S</kbd> ¦ Change the whole line
+<kbd>yy</kbd> ¦ Copy (yank) the line
+<kbd>p</kbd> <kbd>P</kbd> ¦ Paste after / before the cursor
+<kbd>u</kbd> ¦ Undo
+<kbd>Ctrl</kbd><kbd>r</kbd> ¦ Redo
+<kbd>.</kbd> ¦ Repeat the last change
+<kbd>J</kbd> ¦ Join the next line onto this one
+<kbd>&gt;&gt;</kbd> <kbd>&lt;&lt;</kbd> ¦ Indent / unindent the line
+<kbd>~</kbd> ¦ Swap upper/lower case of the character
+<kbd>Ctrl</kbd><kbd>a</kbd> / <kbd>x</kbd> ¦ Add / subtract 1 from the number under the cursor
+<kbd>xp</kbd> <kbd>ddp</kbd> ¦ Swap two characters / two lines
+> Put a count in front of most commands: <kbd>3dd</kbd> deletes three lines, <kbd>2ciw</kbd> changes two words. The leader key is <kbd>\</kbd> unless your <code>~/.vimrc</code> changes it.
+
+## Operator + motion ¦ the grammar ¦ orange
+<kbd>d</kbd> <kbd>c</kbd> <kbd>y</kbd> ¦ Delete / change / yank, followed by any motion or text object
+<kbd>&gt;</kbd> <kbd>&lt;</kbd> <kbd>=</kbd> ¦ Indent / unindent / auto-indent
+<kbd>gU</kbd> <kbd>gu</kbd> ¦ Make upper / lower case
+<kbd>dw</kbd> <kbd>d3w</kbd> ¦ Delete a word / three words
+<kbd>dt</kbd><kbd>)</kbd> ¦ Delete up to the next <code>)</code>
+<kbd>ciw</kbd> ¦ Change the word under the cursor
+<kbd>ci"</kbd> <kbd>ca"</kbd> ¦ Change inside quotes / including the quotes
+<kbd>di(</kbd> <kbd>da{</kbd> ¦ Delete inside ( ) / around { } including braces
+<kbd>cit</kbd> ¦ Change inside an HTML/XML tag
+<kbd>yap</kbd> <kbd>dap</kbd> ¦ Yank / delete the paragraph
+<kbd>&gt;ip</kbd> ¦ Indent the paragraph
+<kbd>gUiw</kbd> ¦ Upper-case the word
+<kbd>gg=G</kbd> ¦ Re-indent the whole file
+> Text objects: <kbd>i</kbd> means inside, <kbd>a</kbd> means around. Then <kbd>w</kbd> word, <kbd>s</kbd> sentence, <kbd>p</kbd> paragraph, <kbd>"</kbd> <kbd>'</kbd> <kbd>&#96;</kbd> quotes, <kbd>(</kbd> <kbd>[</kbd> <kbd>{</kbd> <kbd>&lt;</kbd> brackets, <kbd>t</kbd> tag.
+
+## Visual mode ¦ after v, V or Ctrl-v ¦ yellow
+<kbd>o</kbd> ¦ Jump to the other end of the selection
+<kbd>d</kbd> <kbd>y</kbd> <kbd>c</kbd> ¦ Delete / yank / change the selection
+<kbd>&gt;</kbd> <kbd>&lt;</kbd> ¦ Indent / unindent the selection
+<kbd>U</kbd> <kbd>u</kbd> <kbd>~</kbd> ¦ Upper / lower / swap case
+<kbd>J</kbd> ¦ Join the selected lines
+<kbd>gv</kbd> ¦ Select the last selection again (from Normal mode)
+<kbd>Ctrl</kbd><kbd>v</kbd> … <kbd>I</kbd> text <kbd>Esc</kbd> ¦ Insert the same text at the start of every selected line
+<kbd>Ctrl</kbd><kbd>v</kbd> … <kbd>$</kbd><kbd>A</kbd> text <kbd>Esc</kbd> ¦ Append the same text to every selected line
+
+## Search &amp; replace ¦  ¦ green
+<kbd>/</kbd>text <kbd>?</kbd>text ¦ Search forwards / backwards
+<kbd>n</kbd> <kbd>N</kbd> ¦ Next / previous match
+<kbd>*</kbd> <kbd>#</kbd> ¦ Search for the word under the cursor, forwards / backwards
+<code>:noh</code> ¦ Clear search highlighting
+<code>:s/old/new/</code> ¦ Replace the first match on this line
+<code>:%s/old/new/g</code> ¦ Replace everywhere in the file
+<code>:%s/old/new/gc</code> ¦ Replace everywhere, asking each time (<kbd>y</kbd>/<kbd>n</kbd>/<kbd>a</kbd>/<kbd>q</kbd>)
+<code>:'&lt;,'&gt;s/old/new/g</code> ¦ Replace inside the selection (press <kbd>:</kbd> in Visual mode)
+<code>:g/pattern/d</code> ¦ Delete every line that matches
+<code>:v/pattern/d</code> ¦ Delete every line that doesn't match
+<code>\c</code> in a search ¦ Ignore case for that search, e.g. <code>/error\c</code>
+
+## Files &amp; quitting ¦  ¦ cyan
+<code>:w</code> ¦ Save
+<code>:wq</code> <code>:x</code> <kbd>ZZ</kbd> ¦ Save and quit
+<code>:q</code> ¦ Quit (refuses if there are unsaved changes)
+<code>:q!</code> <kbd>ZQ</kbd> ¦ Quit and throw away changes
+<code>:qa</code> ¦ Quit every window
+<code>:e file</code> ¦ Open a file
+<code>:e!</code> ¦ Reload the file, discarding changes
+<code>:w other.txt</code> ¦ Save a copy under another name
+<code>:r file</code> ¦ Insert another file below the cursor
+<code>:r !cmd</code> ¦ Insert the output of a shell command
+<code>:w !sudo tee %</code> ¦ Save a file you opened without permission
+<code>:Ex</code> ¦ Browse files in the current folder (netrw)
+
+## Buffers, windows &amp; tabs ¦  ¦ pink
+<code>:ls</code> ¦ List open files (buffers)
+<code>:bn</code> <code>:bp</code> ¦ Next / previous buffer
+<code>:b name</code> ¦ Switch to a buffer by part of its name (Tab completes)
+<code>:bd</code> ¦ Close the buffer
+<kbd>Ctrl</kbd><kbd>^</kbd> ¦ Switch to the previous file
+<kbd>Ctrl</kbd><kbd>w</kbd> <kbd>s</kbd> / <kbd>v</kbd> ¦ Split top/bottom / left/right (or <code>:sp</code> <code>:vs</code>)
+<kbd>Ctrl</kbd><kbd>w</kbd> <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> ¦ Move to the window left / down / up / right
+<kbd>Ctrl</kbd><kbd>w</kbd> <kbd>w</kbd> ¦ Go to the next window
+<kbd>Ctrl</kbd><kbd>w</kbd> <kbd>q</kbd> / <kbd>o</kbd> ¦ Close this window / close all the others
+<kbd>Ctrl</kbd><kbd>w</kbd> <kbd>=</kbd> ¦ Make all windows the same size
+<kbd>Ctrl</kbd><kbd>w</kbd> <kbd>_</kbd> / <kbd>|</kbd> ¦ Make this window as tall / wide as possible
+<code>:tabnew</code> ¦ Open a new tab
+<kbd>gt</kbd> <kbd>gT</kbd> ¦ Next / previous tab
+<code>:tabclose</code> ¦ Close the tab
+
+## Registers, macros &amp; marks ¦  ¦ purple
+<kbd>"</kbd><kbd>a</kbd><kbd>yy</kbd> ¦ Yank the line into register <em>a</em>
+<kbd>"</kbd><kbd>a</kbd><kbd>p</kbd> ¦ Paste from register <em>a</em>
+<kbd>"</kbd><kbd>0</kbd><kbd>p</kbd> ¦ Paste the last yank, even after deleting something
+<kbd>"</kbd><kbd>+</kbd><kbd>y</kbd> / <kbd>p</kbd> ¦ Copy to / paste from the desktop clipboard <span class="warn">requires +clipboard</span>
+<code>:reg</code> ¦ Show what's in every register
+<kbd>q</kbd><kbd>a</kbd> … <kbd>q</kbd> ¦ Record a macro into <em>a</em>, then stop
+<kbd>@</kbd><kbd>a</kbd> ¦ Play macro <em>a</em>
+<kbd>@@</kbd> <kbd>10@a</kbd> ¦ Play the last macro again / play <em>a</em> ten times
+<kbd>m</kbd><kbd>a</kbd> ¦ Set mark <em>a</em> here (<em>A</em>–<em>Z</em> work across files)
+<kbd>'</kbd><kbd>a</kbd> <kbd>&#96;</kbd><kbd>a</kbd> ¦ Jump to mark <em>a</em>'s line / exact spot
+<kbd>&#96;</kbd><kbd>.</kbd> ¦ Jump to the last change
+<kbd>''</kbd> ¦ Jump back to where you were before the last jump
+> Check with <code>vim --version | grep clipboard</code>. If it shows <code>-clipboard</code>, install a fuller build (for example <code>vim-gtk3</code> on Debian and Ubuntu) or use Neovim.
+
+## Insert mode ¦  ¦ orange
+<kbd>Ctrl</kbd><kbd>w</kbd> ¦ Delete the word before the cursor
+<kbd>Ctrl</kbd><kbd>u</kbd> ¦ Delete back to the start of the line
+<kbd>Ctrl</kbd><kbd>n</kbd> / <kbd>p</kbd> ¦ Complete the word from the open files
+<kbd>Ctrl</kbd><kbd>r</kbd><kbd>"</kbd> ¦ Paste the last yank without leaving Insert mode
+<kbd>Ctrl</kbd><kbd>o</kbd> ¦ Run one Normal-mode command, then return
+<kbd>Ctrl</kbd><kbd>t</kbd> / <kbd>d</kbd> ¦ Indent / unindent the line
+<kbd>Ctrl</kbd><kbd>v</kbd> <kbd>Tab</kbd> ¦ Insert a real Tab or other special key literally
+
+## Folds, help &amp; settings ¦  ¦ green
+<kbd>zf</kbd>motion ¦ Create a fold, e.g. <kbd>zfap</kbd>
+<kbd>zo</kbd> <kbd>zc</kbd> <kbd>za</kbd> ¦ Open / close / toggle a fold
+<kbd>zR</kbd> <kbd>zM</kbd> ¦ Open / close every fold
+<code>:help word</code> ¦ Help on anything, e.g. <code>:help ciw</code>, <code>:help ctrl-w</code>
+<kbd>Ctrl</kbd><kbd>]</kbd> / <kbd>Ctrl</kbd><kbd>o</kbd> ¦ Follow a link in help / go back
+<code>:set nu</code> <code>:set rnu</code> ¦ Line numbers / relative line numbers (<code>nonu</code> to turn off)
+<code>:set paste</code> ¦ Paste from the terminal without auto-indent mess
+<code>:set ic</code> ¦ Ignore case in searches
+<code>:syntax on</code> ¦ Turn on syntax colours
+<code>vimtutor</code> ¦ A 30-minute interactive lesson (run it in the shell)
